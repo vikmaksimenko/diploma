@@ -1,12 +1,18 @@
 <!doctype html>
 <html>
 <head>
-  <title>Network | Basic usage</title>
+  <title>Network demo</title>
   <meta charset="utf-8">
   <script type="text/javascript" src="script/vis.js"></script>
   <link href="style/vis.css" rel="stylesheet" type="text/css" />
 
   <style type="text/css">
+    #settings {
+      position: absolute;
+      float: top left;
+      padding: 20px;
+      z-index: 10;
+    }
     #mynetwork {
       width: 100%;
       height: 100vmin;
@@ -16,36 +22,43 @@
 </head>
 
 <body>
-
+<div id="settings">
+  <h1>Граф специальности</h1>
+  <h2>группа предметов "ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ"</h2>
+  <p>Каждый узел - предмет. Размер узла зависит от "частоты цитирования" предмета</p>
+  <h3>Настройки</h3>
+  <div id="controls">
+    <input type="checkbox" id="sortByCourses">Сортировать по курсам
+  </div>
+</div>
 <div id="mynetwork"></div>
-
 <script type="text/javascript">
   // create an array with nodes
   var nodes = [
-    {id: 'PP 1.3.1', label: "", title: 'Основи програмування', group: 'PP'},
-    {id: 'PP 1.3.2', label: "", title: 'Комп\'ютерна дискретна математика', group: 'PP'},
-    {id: 'PP 1.3.3', label: "", title: 'Алгоритми та структури даних', group: 'PP'},
-    {id: 'PP 1.3.4', label: "", title: 'Професійна практика програмної інженерії', group: 'PP'},
-    {id: 'PP 1.3.5', label: "", title: 'Архітектура комп\'ютера', group: 'PP'},
-    {id: 'PP 1.3.6', label: "", title: 'Економіка програмного забезпечення', group: 'PP'},
-    {id: 'PP 1.3.7', label: "", title: 'Об\'єктно-орієнтоване програмування', group: 'PP'},
-    {id: 'PP 1.3.8', label: "", title: 'Основи програмної інженерії', group: 'PP'},
-    {id: 'PP 1.3.9', label: "", title: 'Групова динаміка і комунікації', group: 'PP'},
-    {id: 'PP 1.3.10', label: "", title: 'Бази даних', group: 'PP'},
-    {id: 'PP 1.3.11', label: "", title: 'Емпіричні методи програмної інженерії', group: 'PP'},
-    {id: 'PP 1.3.12', label: "", title: 'Аналіз вимог до програмного забезпечення', group: 'PP'},
-    {id: 'PP 1.3.13', label: "", title: 'Операційні системи', group: 'PP'},
-    {id: 'PP 1.3.14', label: "", title: 'Організація комп\'ютерних мереж', group: 'PP'},
-    {id: 'PP 1.3.15', label: "", title: 'Англійська мова (за проф. спрямуванням)', group: 'PP'},
-    {id: 'PP 1.3.16', label: "", title: 'Людино-машинна взаємодія', group: 'PP'},
-    {id: 'PP 1.3.17', label: "", title: 'Конструювання програмного забезпечення', group: 'PP'},
-    {id: 'PP 1.3.18', label: "", title: 'Моделювання та аналіз програмного забезпечення', group: 'PP'}, 
-    {id: 'PP 1.3.19', label: "", title: 'Програмування Інтернет', group: 'PP'},
-    {id: 'PP 1.3.20', label: "", title: 'Архітектура та проектування програмного забезпечення', group: 'PP'},
-    {id: 'PP 1.3.21', label: "", title: 'Якість програмного забезпечення та тестування', group: 'PP'},
-    {id: 'PP 1.3.22', label: "", title: 'Менеджмент проектів програмного забезпечення', group: 'PP'},
-    {id: 'PP 1.3.23', label: "", title: 'Безпека програм та даних', group: 'PP'},
-    {id: 'PP 1.3.24', label: "", title: 'Проектний практикум', group: 'PP'},
+    {id: 'PP 1.3.1', label: "", level: '1', title: 'Основи програмування', group: 'PP'},
+    {id: 'PP 1.3.2', label: "", level: '1', title: 'Комп\'ютерна дискретна математика', group: 'PP'},
+    {id: 'PP 1.3.3', label: "", level: '1', title: 'Алгоритми та структури даних', group: 'PP'},
+    {id: 'PP 1.3.4', label: "", level: '1', title: 'Професійна практика програмної інженерії', group: 'PP'},
+    {id: 'PP 1.3.5', label: "", level: '1', title: 'Архітектура комп\'ютера', group: 'PP'},
+    {id: 'PP 1.3.6', label: "", level: '1', title: 'Економіка програмного забезпечення', group: 'PP'},
+    {id: 'PP 1.3.7', label: "", level: '2', title: 'Об\'єктно-орієнтоване програмування', group: 'PP'},
+    {id: 'PP 1.3.8', label: "", level: '2', title: 'Основи програмної інженерії', group: 'PP'},
+    {id: 'PP 1.3.9', label: "", level: '2', title: 'Групова динаміка і комунікації', group: 'PP'},
+    {id: 'PP 1.3.10', label: "", level: '2', title: 'Бази даних', group: 'PP'},
+    {id: 'PP 1.3.11', label: "", level: '2', title: 'Емпіричні методи програмної інженерії', group: 'PP'},
+    {id: 'PP 1.3.12', label: "", level: '2', title: 'Аналіз вимог до програмного забезпечення', group: 'PP'},
+    {id: 'PP 1.3.13', label: "", level: '2', title: 'Операційні системи', group: 'PP'},
+    {id: 'PP 1.3.14', label: "", level: '2', title: 'Організація комп\'ютерних мереж', group: 'PP'},
+    {id: 'PP 1.3.15', label: "", level: '3', title: 'Англійська мова (за проф. спрямуванням)', group: 'PP'},
+    {id: 'PP 1.3.16', label: "", level: '3', title: 'Людино-машинна взаємодія', group: 'PP'},
+    {id: 'PP 1.3.17', label: "", level: '3', title: 'Конструювання програмного забезпечення', group: 'PP'},
+    {id: 'PP 1.3.18', label: "", level: '3', title: 'Моделювання та аналіз програмного забезпечення', group: 'PP'}, 
+    {id: 'PP 1.3.19', label: "", level: '3', title: 'Програмування Інтернет', group: 'PP'},
+    {id: 'PP 1.3.20', label: "", level: '3', title: 'Архітектура та проектування програмного забезпечення', group: 'PP'},
+    {id: 'PP 1.3.21', label: "", level: '4', title: 'Якість програмного забезпечення та тестування', group: 'PP'},
+    {id: 'PP 1.3.22', label: "", level: '4', title: 'Менеджмент проектів програмного забезпечення', group: 'PP'},
+    {id: 'PP 1.3.23', label: "", level: '4', title: 'Безпека програм та даних', group: 'PP'},
+    {id: 'PP 1.3.24', label: "", level: '4', title: 'Проектний практикум', group: 'PP'},
     // {id: 'PP 1.3.25', label: "", title: 'Безпека життєдіяльності', group: 'PP'},
     // {id: 'PP 1.3.26', label: "", title: 'Основи охорони праці', group: 'PP'},
   ];
@@ -155,12 +168,50 @@
     edges: edges
   };
   var options = {
+    nodes: {
+      shape: "dot"
+    },
     edges: {
-      style: 'arrow'
-    }
+      style: 'arrow',
+      arrowScaleFactor: 0.5
+    }, 
+    // hierarchicalLayout: {
+    //   nodeSpacing: 100,
+    //   direction: "DU"
+    // }
   };
-  var network = new vis.Network(container, data, options);
-</script>
 
+  function setNodeValue (data) {
+    var nodes = data.nodes;
+    var edges = data.edges;
+    for (var i in nodes) {
+      nodes[i].value = 1;
+      var nodeId = nodes[i].id;
+      for(var j in edges) {
+        if(edges[j].to == nodeId) {
+          nodes[i].value++;
+        }
+      }
+    }
+    return data;
+  }
+
+  var sortCheckbox = document.getElementById("sortByCourses");
+  sortCheckbox.onclick = function() {
+    if(options.hierarchicalLayout == undefined) {
+      options.hierarchicalLayout = {
+        nodeSpacing: 100,
+        direction: "DU",
+        enabled: true
+      }
+    } else {
+      options.hierarchicalLayout = undefined;
+    }
+    network.destroy;
+    network = new vis.Network(container, setNodeValue(data), options);
+  }
+
+  var network = new vis.Network(container, setNodeValue(data), options);
+</script>
 </body>
 </html>
