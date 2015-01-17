@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <title>Network | Basic usage</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="script/vis.js"></script>
+  <link href="style/vis.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    #mynetwork {
+      width: 100%;
+      height: 100vmin;
+      border: 1px solid lightgray;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+  // create an array with nodes
+  var nodes = [
+    {id: 1, title: 'Основи програмування', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 2, title: 'Комп\'ютерна дискретна математика', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 3, title: 'Алгоритми та структури даних', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 4, title: 'Професійна практика програмної інженерії', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 5, title: 'Архітектура комп\'ютера', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 6, title: 'Економіка програмного забезпечення', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 7, title: 'Об\'єктно-орієнтоване програмування', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 8, title: 'Основи програмної інженерії', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 9, title: 'Групова динаміка і комунікації', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 10, title: 'Бази даних', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 11, title: 'Емпіричні методи програмної інженерії', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 12, title: 'Аналіз вимог до програмного забезпечення', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 13, title: 'Операційні системи', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 14, title: 'Організація комп\'ютерних мереж', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'},
+    {id: 15, title: 'Англійська мова (за проф. спрямуванням)', group: 'ЦИКЛ ПРОФЕСІЙНОЇ ТА ПРАКТИЧНОЇ ПІДГОТОВКИ'}
+  ];
+
+  // create an array with edges
+  var edges = [
+    {from: 1, to: 2, title: "Имя темы"},
+    {from: 1, to: 3, title: "Имя темы"},
+    {from: 4, to: 1, title: "Имя темы"},
+    {from: 4, to: 3, title: "Имя темы"},
+    {from: 5, to: 3, title: "Имя темы"},
+    {from: 7, to: 1, title: "Имя темы"},
+    {from: 7, to: 2, title: "Имя темы"},
+    {from: 7, to: 3, title: "Имя темы"},
+    {from: 8, to: 1, title: "Имя темы"},
+    {from: 10, to: 1, title: "Имя темы"},
+    {from: 10, to: 2, title: "Имя темы"},
+    {from: 10, to: 3, title: "Имя темы"},
+    {from: 12, to: 1, title: "Имя темы"},
+    {from: 12, to: 2, title: "Имя темы"},
+    {from: 12, to: 3, title: "Имя темы"},
+    {from: 13, to: 1, title: "Имя темы"},
+    {from: 13, to: 2, title: "Имя темы"},
+    {from: 13, to: 3, title: "Имя темы"},
+  ];
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+   
+  };
+  var network = new vis.Network(container, data, options);
+</script>
+
+</body>
+</html>
