@@ -56,7 +56,30 @@
 
         // });
         init(data);
+        initMenu();
     });
+
+    function initMenu() {
+        document.getElementById('toggle-menu').addEventListener('click', function() {
+            var checkBox = document.getElementById('toggle-menu');
+            var aside = document.getElementById('settings');
+            if (!checkBox.checked) {
+                aside.style.left = '0';
+                console.log('Visible');
+            } else {
+                aside.style.left = '-20vw';
+                console.log('InVisible');
+            }
+        }, false);
+
+        document.getElementById('info_button').addEventListener('click', function() {
+            var checkBox = document.getElementById('toggle-menu');
+            checkBox.click();
+            var overlay = document.getElementById('overlay');
+            overlay.style.top = 0;
+            overlay.style.opacity = 1;
+        }, false);
+    }
 
     function init(json) {
         var nodes = json.nodes;
