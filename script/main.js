@@ -61,8 +61,8 @@
     function init(json) {
         var nodes = json.nodes;
         preformatData(json);
-        //        sortNodesToCircle(nodes);
-        sortNodesToLines(nodes);
+        sortNodesToCircle(nodes);
+        // sortNodesToLines(nodes);
         initGraph(json);
     }
 
@@ -109,10 +109,11 @@
         }, {});
         console.log(mem);
 
-        for (var i = 0; i < mem.length; i++) {
-            for (var j = 0; j < level.length; j++) {
-                mem[i][j].x = (mem[i].length + 1) / j;
-                mem[i][j].y = (mem.length + 1) / i;
+        for (var i in mem) {
+            var row = mem[i];
+            for (var j in row) {
+                row[j].x = (row.length + 1) / j;
+                row[j].y = (mem.length + 1) / i;
             }
         }
         console.log(mem);
