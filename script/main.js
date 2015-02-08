@@ -79,6 +79,12 @@
             overlay.style.top = 0;
             overlay.style.opacity = 1;
         }, false);
+
+        document.getElementById('overlay-close').addEventListener('click', function() {
+            var overlay = document.getElementById('overlay');
+            overlay.style.top = '-100vh';
+            overlay.style.opacity = 0;
+        }, false);
     }
 
     function init(json) {
