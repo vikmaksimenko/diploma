@@ -29,8 +29,7 @@
             "level": "1",
             "label": "Архітектура комп'ютера",
             "group": "PP"
-        },
-        {
+        }, {
             "id": "PP 1.3.7",
 
             "level": "2",
@@ -42,15 +41,13 @@
             "level": "2",
             "label": "Основи програмної інженерії",
             "group": "PP"
-        },
-        {
+        }, {
             "id": "PP 1.3.10",
 
             "level": "2",
             "label": "Бази даних",
             "group": "PP"
-        },
-        {
+        }, {
             "id": "PP 1.3.12",
 
             "level": "2",
@@ -68,8 +65,7 @@
             "level": "2",
             "label": "Організація комп'ютерних мереж",
             "group": "PP"
-        },
-        {
+        }, {
             "id": "PP 1.3.16",
 
             "level": "3",
@@ -125,255 +121,241 @@
         }
 
     ],
-    "edges" : [{
-            "target": "PP 1.3.1",
-            "source": "PP 1.3.2",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.1",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.4",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.4",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.5",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.7",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.7",
-            "source": "PP 1.3.2",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.7",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.8",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.8",
-            "source": "PP 1.3.4",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.10",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.10",
-            "source": "PP 1.3.2",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.10",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.10",
-            "source": "PP 1.3.7",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.12",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.12",
-            "source": "PP 1.3.2",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.12",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.12",
-            "source": "PP 1.3.7",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.13",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.13",
-            "source": "PP 1.3.2",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.13",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.13",
-            "source": "PP 1.3.5",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.13",
-            "source": "PP 1.3.7",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.14",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.14",
-            "source": "PP 1.3.5",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.16",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.16",
-            "source": "PP 1.3.7",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.16",
-            "source": "PP 1.3.8",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.16",
-            "source": "PP 1.3.13",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.17",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.17",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.17",
-            "source": "PP 1.3.2",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.17",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.17",
-            "source": "PP 1.3.7",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.17",
-            "source": "PP 1.3.8",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.17",
-            "source": "PP 1.3.12",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.18",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.18",
-            "source": "PP 1.3.7",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.18",
-            "source": "PP 1.3.8",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.19",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.19",
-            "source": "PP 1.3.3",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.19",
-            "source": "PP 1.3.14",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.21",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.21",
-            "source": "PP 1.3.7",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.21",
-            "source": "PP 1.3.20",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.22",
-            "source": "PP 1.3.8",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.22",
-            "source": "PP 1.3.12",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.22",
-            "source": "PP 1.3.20",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.23",
-            "source": "PP 1.3.1",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.23",
-            "source": "PP 1.3.10",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.23",
-            "source": "PP 1.3.13",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.23",
-            "source": "PP 1.3.14",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.23",
-            "source": "PP 1.3.19",
-            "label": "Имя темы"
-        },
-        {
-            "target": "PP 1.3.24",
-            "source": "PP 1.3.4",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.24",
-            "source": "PP 1.3.7",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.24",
-            "source": "PP 1.3.12",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.24",
-            "source": "PP 1.3.16",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.24",
-            "source": "PP 1.3.17",
-            "label": "Имя темы"
-        }, {
-            "target": "PP 1.3.24",
-            "source": "PP 1.3.22",
-            "label": "Имя темы"
-        }
-    ]
+    "edges": [{
+        "target": "PP 1.3.1",
+        "source": "PP 1.3.2",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.1",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.4",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.4",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.5",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.7",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.7",
+        "source": "PP 1.3.2",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.7",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.8",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.8",
+        "source": "PP 1.3.4",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.10",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.10",
+        "source": "PP 1.3.2",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.10",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.10",
+        "source": "PP 1.3.7",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.12",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.12",
+        "source": "PP 1.3.2",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.12",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.12",
+        "source": "PP 1.3.7",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.13",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.13",
+        "source": "PP 1.3.2",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.13",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.13",
+        "source": "PP 1.3.5",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.13",
+        "source": "PP 1.3.7",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.14",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.14",
+        "source": "PP 1.3.5",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.16",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.16",
+        "source": "PP 1.3.7",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.16",
+        "source": "PP 1.3.8",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.16",
+        "source": "PP 1.3.13",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.17",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.17",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.17",
+        "source": "PP 1.3.2",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.17",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.17",
+        "source": "PP 1.3.7",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.17",
+        "source": "PP 1.3.8",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.17",
+        "source": "PP 1.3.12",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.18",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.18",
+        "source": "PP 1.3.7",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.18",
+        "source": "PP 1.3.8",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.19",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.19",
+        "source": "PP 1.3.3",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.19",
+        "source": "PP 1.3.14",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.21",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.21",
+        "source": "PP 1.3.7",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.21",
+        "source": "PP 1.3.20",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.22",
+        "source": "PP 1.3.8",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.22",
+        "source": "PP 1.3.12",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.22",
+        "source": "PP 1.3.20",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.23",
+        "source": "PP 1.3.1",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.23",
+        "source": "PP 1.3.10",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.23",
+        "source": "PP 1.3.13",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.23",
+        "source": "PP 1.3.14",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.23",
+        "source": "PP 1.3.19",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.24",
+        "source": "PP 1.3.4",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.24",
+        "source": "PP 1.3.7",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.24",
+        "source": "PP 1.3.12",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.24",
+        "source": "PP 1.3.16",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.24",
+        "source": "PP 1.3.17",
+        "label": "Имя темы"
+    }, {
+        "target": "PP 1.3.24",
+        "source": "PP 1.3.22",
+        "label": "Имя темы"
+    }]
 }
