@@ -67,7 +67,7 @@
                 aside.style.left = '0';
                 console.log('Visible');
             } else {
-                aside.style.left = '-20vw';
+                aside.style.left = '-350px';
                 console.log('InVisible');
             }
         }, false);
