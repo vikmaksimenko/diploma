@@ -129,6 +129,10 @@ a {
   transition: all 0.5s;
 }
 
+.settins-group {
+  margin: 20px 0;
+}
+
 #overlay {
   color: #ddd;
   position: absolute;
