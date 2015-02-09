@@ -8,6 +8,13 @@ body {
   font-size: 1.2em;
 }
 
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: inherit;
+  overflow: hidden;
+}
+
 .menu-icon {
   font-size: 3em;
   max-width: 80px;
@@ -44,12 +51,53 @@ body {
 .logo {
   font-family: 'Armata', sans-serif;
   font-size: 2em;
+  text-align: center;
+}
+
+.logo > a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .logo-edu {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 1.1em;
+}
+
+.logo > a::before,
+.logo > a::after {
+    display: inline-block;
+    opacity: 0;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+    transition: transform 0.3s, opacity 0.2s;
+}
+
+.logo > a::before {
+    margin-right: 10px;
+    content: '[';
+    -webkit-transform: translateX(20px);
+    -moz-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+.logo > a::after {
+    margin-left: 10px;
+    content: ']';
+    -webkit-transform: translateX(-20px);
+    -moz-transform: translateX(-20px);
+    transform: translateX(-20px);
+}
+
+.logo > a:hover::before,
+.logo > a:hover::after,
+.logo > a:focus::before,
+.logo > a:focus::after {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    transform: translateX(0px);
 }
 
 #toggle-menu {
@@ -68,14 +116,14 @@ body {
 
 #settings {
   height: 100vh;
-  width: 20vw;
+  width: 350px;
   margin: none;
-  padding-left: 50px;
+  padding: 0 30px;
   box-sizing: border-box;
-  left: -20vw;
+  left: -350px;
   z-index: 5;
   position: absolute;
-  background: rgba(128, 128, 128, 0.5);
+  background: rgba(128, 128, 128, 0.9);
   border-right: 1px solid black;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -123,9 +171,24 @@ body {
   height: 100%;
   margin: auto;
   font-size: 1.5em;
+  text-align: justify;
 }
 
+#overlay .link {
+  border-bottom: 2px solid rgba(240,240,240,0.9);
+  font-weight: bold;
+  
+  display: inline;
+  -webkit-transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s;
+}
 
+#overlay .link:hover,
+#overlay .link:focus {
+  border-color: rgba(255,255,255,0);
+  background-color: rgba(255,255,255,0.7);
+  color: #333;
+}
 
 #container {
   height: 100%;
