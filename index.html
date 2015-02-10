@@ -14,15 +14,18 @@
 	  <span class="menu-icon"></span>
 	</label>
 	<aside id="settings">
-		<h1 class="logo"><a href="#">Graph<span class="logo-edu">.edu</span></a></h1>
+		<h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
+		<a href="#" id="info_button" class="button">More info...</a>
 		<h3>Настройки: </h3>
 		<div class="settins-group">
-			<input type="radio" name="view_mode" id="circle_view">Круг<br>
+			<!--<input type="radio" name="view_mode" id="circle_view">Круг<br>
 			<input type="radio" name="view_mode" id="linear_view">Семестры<br>
 			<input type="radio" name="view_mode" id="graph_view">Граф<br>
 			<input type="radio" name="view_mode" id="other_view">Другое =)<br>
+			-->
+			<hr>
+			<input type="checkbox" id="relative-nodes-checkbox">Relative nodes size<br>
 		</div>
-		<a href="#" id="info_button" class="button">More info...</a>
 		<a href="#" id="snapshot-button" class="button">Save</a>
 	</aside>
 </div>
@@ -30,7 +33,7 @@
 <div id="overlay">
 	<span class="menu-icon" id="overlay-close"></span>
 	<article class="content">
-		<h1 class="logo"><a href="#">Graph<span class="logo-edu">.edu</span></a></h1>
+		<h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
 		<p>This is a diploma project of <a class="link" href="https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile">Viktor Maksimenko</a>, ONPU student. <br>
 		This web app displays the graph of computer science subjects. Edges between graph nodes are dependencies between subjects. Fot graph drawing we use <a class="link" href="http://sigmajs.org/">Sigma.js</a> - a JavaScript library dedicated to graph drawing. <br>
 		For more details view our project on <a class="link" href="https://github.com/vikmaksimenko/diploma">github</a></p>
@@ -41,6 +44,7 @@
 <script type="text/javascript" src="script/plugins/sigma.layout.forceAtlas2.min.js"></script>
 <script type="text/javascript" src="script/plugins/sigma.plugins.dragNodes.min.js"></script>
 <script type="text/javascript" src="script/plugins/sigma.renderers.snapshot.js"></script>
+<script type="text/javascript" src="script/plugins/sigma.plugins.relativeSize.js"></script>
 <script type="text/javascript" src="data/data_for_sigma.js"></script>
 <script type="text/javascript" src="script/main.js"></script>
 

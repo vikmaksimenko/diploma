@@ -55,19 +55,14 @@ a {
   text-align: center;
 }
 
-.logo > a {
-  text-decoration: none;
-  color: inherit;
-}
-
 .logo-edu {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 1.1em;
 }
 
-.logo > a::before,
-.logo > a::after {
+.button::before,
+.button::after {
     display: inline-block;
     opacity: 0;
     -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
@@ -75,7 +70,7 @@ a {
     transition: transform 0.3s, opacity 0.2s;
 }
 
-.logo > a::before {
+.button::before {
     margin-right: 10px;
     content: '[';
     -webkit-transform: translateX(20px);
@@ -83,7 +78,7 @@ a {
     transform: translateX(20px);
 }
 
-.logo > a::after {
+.button::after {
     margin-left: 10px;
     content: ']';
     -webkit-transform: translateX(-20px);
@@ -91,10 +86,10 @@ a {
     transform: translateX(-20px);
 }
 
-.logo > a:hover::before,
-.logo > a:hover::after,
-.logo > a:focus::before,
-.logo > a:focus::after {
+.button:hover::before,
+.button:hover::after,
+.button:focus::before,
+.button:focus::after {
     opacity: 1;
     -webkit-transform: translateX(0px);
     -moz-transform: translateX(0px);
