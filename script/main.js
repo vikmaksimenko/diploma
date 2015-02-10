@@ -49,7 +49,21 @@
             overlay.style.top = '-100vh';
             overlay.style.opacity = 0;
         }, false);
+    }
 
+    function init(json) {
+        var nodes = json.nodes;
+        preformatData(json);
+        sortNodesToCircle(nodes);
+        // sortNodesToLines(nodes);
+        initGraph(json);
+
+
+        document.getElementById('snapshot-button').addEventListener('click', function() {
+            s.renderers[0].snapshot({
+                download: true
+            });
+        }, false);
     }
 
     function initGraph(json) {
