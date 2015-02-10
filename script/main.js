@@ -93,6 +93,11 @@
         sortNodesToCircle(nodes);
         // sortNodesToLines(nodes);
         initGraph(json);
+          
+
+        document.getElementById('snapshot-button').addEventListener('click', function() {
+          s.renderers[0].snapshot({download: true});
+        }, false);
     }
 
     function initGraph(json) {
