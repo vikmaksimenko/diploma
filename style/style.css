@@ -4,6 +4,7 @@ body {
   width: 100vw;
   margin: 0;
   padding: 0;
+  overflow: hidden;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 1.2em;
 }
@@ -129,15 +130,20 @@ a {
   transition: all 0.5s;
 }
 
+.settins-group {
+  margin: 20px 0;
+}
+
 #overlay {
   color: #ddd;
   position: absolute;
   opacity: 0;
+  overflow: hidden;
   z-index: 100;
   top: -100vh;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: rgba(64, 64, 64, 0.95);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -170,7 +176,7 @@ a {
   width: 50vw;
   height: 100%;
   margin: auto;
-  font-size: 1.5em;
+  font-size: 5vh;
   text-align: justify;
 }
 
