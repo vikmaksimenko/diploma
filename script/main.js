@@ -61,8 +61,18 @@
 
         document.getElementById('snapshot-button').addEventListener('click', function() {
             s.renderers[0].snapshot({
-                download: true
+                download: true, 
+                labels: true
             });
+        }, false);
+
+        document.getElementById('relative-nodes-checkbox').addEventListener('click', function() {
+            var checkBox = document.getElementById('relative-nodes-checkbox');
+            if (checkBox.checked) {
+                sigma.plugins.relativeSize(s, 1);
+            } else {
+                sigma.plugins.absoluteSize(s, 1);
+            }
         }, false);
     }
 
