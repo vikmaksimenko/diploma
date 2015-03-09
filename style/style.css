@@ -112,9 +112,10 @@ a {
 
 #settings {
   height: 100vh;
+  min-height: 200px;
   width: 350px;
   margin: none;
-  padding: 0 30px;
+  padding: 0 0 100px 30px;
   box-sizing: border-box;
   left: -350px;
   z-index: 5;
@@ -125,11 +126,16 @@ a {
   transition: all 0.5s;
 }
 
+.settings-container {
+  overflow-y: auto;
+  height: 80%
+}
+
 .settins-group {
   margin: 20px 0;
 }
 
-#overlay {
+#overlay {  
   color: #ddd;
   position: absolute;
   opacity: 0;

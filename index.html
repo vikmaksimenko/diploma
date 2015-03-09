@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="controls">
-	<input type="checkbox" id="toggle-menu" checked="checked"/>
+	<input type="checkbox" id="toggle-menu" checked/>
 	<label for="toggle-menu">
 	  <span class="menu-icon"></span>
 	</label>
@@ -17,16 +17,20 @@
 		<h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
 		<a href="#" id="info_button" class="button">More info...</a>
 		<h3>Настройки: </h3>
-		<div class="settins-group">
-			<!--<input type="radio" name="view_mode" id="circle_view">Круг<br>
-			<input type="radio" name="view_mode" id="linear_view">Семестры<br>
-			<input type="radio" name="view_mode" id="graph_view">Граф<br>
-			<input type="radio" name="view_mode" id="other_view">Другое =)<br>
-			-->
-			<hr>
-			<input type="checkbox" id="relative-nodes-checkbox">Relative nodes size<br>
-		</div>
-		<a href="#" id="snapshot-button" class="button">Save</a>
+		<div class="settings-container">
+			<div class="settins-group">
+				<input type="range" id="scale-range" min="0" max="100" step="1" value="50">Масштаб<br>
+				<hr>
+				<input type="radio" name="view_mode" id="circle_view">Круг<br>
+				<input type="radio" name="view_mode" id="linear_view">Семестры<br>
+				<input type="radio" name="view_mode" id="graph_view">Граф<br>
+				<input type="radio" name="view_mode" id="other_view">Другое =)<br>
+				<hr>
+				<input type="checkbox" id="relative-nodes-checkbox">Relative nodes size<br>
+				<input type="checkbox" id="shpow-labels-checkbox">Show labels<br>
+			</div>
+			<a href="#" id="snapshot-button" class="button">Save</a>
+		</div> 
 	</aside>
 </div>
 <div id="container"></div>
@@ -43,7 +47,7 @@
 <script type="text/javascript" src="script/sigma.min.js"></script>
 <script type="text/javascript" src="script/plugins/sigma.layout.forceAtlas2.min.js"></script>
 <script type="text/javascript" src="script/plugins/sigma.plugins.dragNodes.min.js"></script>
-<script type="text/javascript" src="script/plugins/sigma.renderers.snapshot.js"></script>
+<script type="text/javascript" src="script/plugins/sigma.renderers.snapshot.min.js"></script>
 <script type="text/javascript" src="script/plugins/sigma.plugins.relativeSize.js"></script>
 <script type="text/javascript" src="data/data_for_sigma.js"></script>
 <script type="text/javascript" src="script/main.js"></script>

@@ -18,17 +18,16 @@
   sigma.plugins.relativeSize = function(s, initialSize) {
     var nodes = s.graph.nodes();
 
-    // second create size for every node
     for(var i = 0; i < nodes.length; i++) {
       var degree = s.graph.degree(nodes[i].id);
       nodes[i].size = initialSize * Math.sqrt(degree);
+      console.log("degree: " + degree);
     }
     s.refresh();
   };
   sigma.plugins.absoluteSize = function(s, size) {
     var nodes = s.graph.nodes();
 
-    // second create size for every node
     for(var i = 0; i < nodes.length; i++) {
       nodes[i].size = size;
     }
