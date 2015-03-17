@@ -11,6 +11,8 @@ $(document).ready(function() {
     initMenu();
 });
 
+//var s;  // sigma example 
+
 function initMenu() {
     document.getElementById('toggle-menu').addEventListener('click', function() {
         var checkBox = document.getElementById('toggle-menu');
@@ -42,10 +44,15 @@ function initMenu() {
 function init(json) {
     var nodes = json.nodes;
     preformatData(json);
-    sortNodesToCircle(nodes);
-    sortNodesToLines(nodes);
     initGraph(json);
 
+    // sortNodesToCircle(nodes);
+    // sortNodesToLines(nodes);
+
+    s.startForceAtlas2();
+    setTimeout(function(){
+        s.stopForceAtlas2();
+    }, 3 * 1000);
 
     document.getElementById('snapshot-button').addEventListener('click', function() {
         s.renderers[0].snapshot({
@@ -93,9 +100,8 @@ function initGraph(json) {
         }
     });
 
-    highlightNeighbors(s)
+    sigma.plugins.highlightNeighbors(s);
     var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
-    //s.startForceAtlas2({worker: true, barnesHutOptimize: false});
 }
 
 function preformatData(json) {
@@ -111,9 +117,7 @@ function sortNodesToCircle(nodes) {
         nodes[i].y = 50 * Math.sin(2 * i * Math.PI / nodes.length);
         nodes[i].size = 2;
     }
-    console.log(nodes);
 }
-
 
 function sortNodesToLines(nodes) {
     var mem = nodes.reduce(function(memo, item) {
@@ -134,50 +138,4 @@ function sortNodesToLines(nodes) {
             mem[i][j].size = 2;
         }
     }
-
-    console.log(nodes);
-}
-
-function highlightNeighbors(s) {
-    s.graph.nodes().forEach(function(n) {
-        n.originalColor = n.color;
-    });
-    s.graph.edges().forEach(function(e) {
-        e.originalColor = e.color;
-    });
-
-    s.bind('clickNode', function(e) {
-        var nodeId = e.data.node.id,
-            toKeep = s.graph.neighbors(nodeId);
-        toKeep[nodeId] = e.data.node;
-
-        s.graph.nodes().forEach(function(n) {
-            if (toKeep[n.id])
-                n.color = n.originalColor;
-            else
-                n.color = '#888';
-               // n.size = n.size + 20;
-        });
-
-        s.graph.edges().forEach(function(e) {
-            if (toKeep[e.source] && toKeep[e.target])
-                e.color = e.originalColor;
-            else
-                e.color = '#888';
-        });
-
-        s.refresh();
-    });
-
-    s.bind('clickStage', function(e) {
-        s.graph.nodes().forEach(function(n) {
-            n.color = n.originalColor;
-        });
-
-        s.graph.edges().forEach(function(e) {
-            e.color = e.originalColor;
-        });
-
-        s.refresh();
-    });
 }
