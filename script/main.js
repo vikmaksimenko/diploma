@@ -7,8 +7,8 @@ $(document).ready(function() {
     //     console.log(json);
     //     init(json);
     // });
-    init(data);
-    initMenu();
+    initGraph(data);
+    // initMenu();
 });
 
 //var s;  // sigma example 
@@ -41,10 +41,10 @@ function initMenu() {
     }, false);
 }
 
-function init(json) {
+function initGraph(json) {
     var nodes = json.nodes;
     preformatData(json);
-    initGraph(json);
+    setGraphConfigs(json);
 
     // sortNodesToCircle(nodes);
     // sortNodesToLines(nodes);
@@ -54,24 +54,24 @@ function init(json) {
         s.stopForceAtlas2();
     }, 3 * 1000);
 
-    document.getElementById('snapshot-button').addEventListener('click', function() {
-        s.renderers[0].snapshot({
-            download: true,
-            labels: true
-        });
-    }, false);
+    // document.getElementById('snapshot-button').addEventListener('click', function() {
+    //     s.renderers[0].snapshot({
+    //         download: true,
+    //         labels: true
+    //     });
+    // }, false);
 
-    document.getElementById('relative-nodes-checkbox').addEventListener('click', function() {
-        var checkBox = document.getElementById('relative-nodes-checkbox');
-        if (checkBox.checked) {
-            sigma.plugins.relativeSize(s, 1);
-        } else {
-            sigma.plugins.absoluteSize(s, 1);
-        }
-    }, false);
+    // document.getElementById('relative-nodes-checkbox').addEventListener('click', function() {
+    //     var checkBox = document.getElementById('relative-nodes-checkbox');
+    //     if (checkBox.checked) {
+    //         sigma.plugins.relativeSize(s, 1);
+    //     } else {
+    //         sigma.plugins.absoluteSize(s, 1);
+    //     }
+    // }, false);
 }
 
-function initGraph(json) {
+function setGraphConfigs(json) {
     sigma.renderers.def = sigma.renderers.canvas;
     sigma.classes.graph.addMethod('neighbors', function(nodeId) {
         var k,
@@ -108,34 +108,5 @@ function preformatData(json) {
     var edges = json.edges;
     for (var i = 0; i < edges.length; i++) {
         edges[i].id = i + "";
-    }
-}
-
-function sortNodesToCircle(nodes) {
-    for (var i = 0; i < nodes.length; i++) {
-        nodes[i].x = 50 * Math.cos(2 * i * Math.PI / nodes.length);
-        nodes[i].y = 50 * Math.sin(2 * i * Math.PI / nodes.length);
-        nodes[i].size = 2;
-    }
-}
-
-function sortNodesToLines(nodes) {
-    var mem = nodes.reduce(function(memo, item) {
-        if (!memo[item.level]) memo[item.level] = [];
-        memo[item.level].push(item);
-        return memo;
-    }, []);
-
-    var MAX_WIDTH = 50;
-    var MAX_HEIGHT = 50;
-
-    var stepY = MAX_HEIGHT / Object.keys(mem).length;
-    for (var i in mem) {    
-        var stepX = MAX_WIDTH / mem[i].length;
-        for (var j = 0; j < mem[i].length; j++) {           
-            mem[i][j].x = stepX * j;
-            mem[i][j].y = stepY * i;
-            mem[i][j].size = 2;
-        }
     }
 }
