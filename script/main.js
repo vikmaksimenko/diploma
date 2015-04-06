@@ -1,3 +1,5 @@
+var s; // sigma example 
+
 $(document).ajaxError(function(a, b, c, d) {
     console.log("error" + d);
 });
@@ -10,8 +12,6 @@ $(document).ready(function() {
     initGraph(data);
     // initMenu();
 });
-
-//var s;  // sigma example 
 
 function initMenu() {
     document.getElementById('toggle-menu').addEventListener('click', function() {
@@ -44,15 +44,21 @@ function initMenu() {
 function initGraph(json) {
     var nodes = json.nodes;
     preformatData(json);
+
+    console.log(json);
+
     setGraphConfigs(json);
 
     // sortNodesToCircle(nodes);
     // sortNodesToLines(nodes);
 
     s.startForceAtlas2();
-    setTimeout(function(){
+    console.log("forceAtlas begin");
+    setTimeout(function() {
         s.stopForceAtlas2();
     }, 3 * 1000);
+
+    console.log(json);
 
     // document.getElementById('snapshot-button').addEventListener('click', function() {
     //     s.renderers[0].snapshot({
@@ -72,6 +78,9 @@ function initGraph(json) {
 }
 
 function setGraphConfigs(json) {
+
+    // todo add this to separate method
+
     sigma.renderers.def = sigma.renderers.canvas;
     sigma.classes.graph.addMethod('neighbors', function(nodeId) {
         var k,
@@ -83,6 +92,8 @@ function setGraphConfigs(json) {
 
         return neighbors;
     });
+
+
 
     s = new sigma({
         container: document.getElementById('container'),
@@ -100,7 +111,7 @@ function setGraphConfigs(json) {
         }
     });
 
-    sigma.plugins.highlightNeighbors(s);
+    // sigma.plugins.highlightNeighbors(s);
     var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
 }
 
@@ -109,4 +120,12 @@ function preformatData(json) {
     for (var i = 0; i < edges.length; i++) {
         edges[i].id = i + "";
     }
+    var nodes = json.nodes;
+    console.log(json);
+    for (var i = 0; i < nodes.length; i++) {
+        nodes[i].x = Math.random() * 100;
+        nodes[i].y = Math.random() * 100;
+        nodes[i].size = 1;
+    }
+    console.log(json);
 }

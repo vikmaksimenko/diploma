@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     if (typeof sigma === 'undefined') {
@@ -22,6 +22,17 @@
         });
         s.graph.edges().forEach(function(e) {
             e.originalColor = e.color;
+        });
+
+        s.graph.addMethod('neighbors', function(nodeId) {
+            var k,
+                neighbors = {},
+                index = this.allNeighborsIndex[nodeId] || {};
+
+            for (k in index)
+                neighbors[k] = this.nodesIndex[k];
+
+            return neighbors;
         });
 
         s.bind('clickNode', function(e) {
