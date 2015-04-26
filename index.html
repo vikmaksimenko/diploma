@@ -1,53 +1,76 @@
 <html>
+
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="style/style.css">
-<link rel="stylesheet" href="style/fontello.css">
-<link href='http://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300italic,700,300&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style/fontello.css">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="style/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300italic,700,300&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
 </head>
+
 <body>
-<div id="controls">
-	<input type="checkbox" id="toggle-menu" checked="checked"/>
-	<label for="toggle-menu">
-	  <span class="menu-icon"></span>
-	</label>
-	<aside id="settings">
-		<h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
-		<a href="#" id="info_button" class="button">More info...</a>
-		<h3>Настройки: </h3>
-		<div class="settins-group">
-			<!--<input type="radio" name="view_mode" id="circle_view">Круг<br>
-			<input type="radio" name="view_mode" id="linear_view">Семестры<br>
-			<input type="radio" name="view_mode" id="graph_view">Граф<br>
-			<input type="radio" name="view_mode" id="other_view">Другое =)<br>
-			-->
-			<hr>
-			<input type="checkbox" id="relative-nodes-checkbox">Relative nodes size<br>
-		</div>
-		<a href="#" id="snapshot-button" class="button">Save</a>
-	</aside>
-</div>
-<div id="container"></div>
-<div id="overlay">
-	<span class="menu-icon" id="overlay-close"></span>
+    <div id="settings-button">
+        <span id="settings-button-icon" class="glyphicon glyphicon-plus"></span>
+    </div>
+    <asside class="settings settings-hidden">
+        <h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
+        <div class="settings-buttons-group">
+            <a href="#" id="snapshot-button" class="button">Save</a>
+            <a href="#" id="more-info-button" class="button">More info...</a>
+        </div>
+        <div class="settings-group mCustomScrollbar" data-mcs-theme="dark">
+            <h3>Settings: </h3>
+            <label for="scale-range">Scale</label>
+            <input type="range" id="scale-range" min="0" max="100" step="1" value="50">
+            <br>
+            <hr>
+			<label for="layout-select">Layout</label>
+            <select class="form-control" id="layout-select">
+            	<option value="circle">Circle</option>
+            	<option value="semecter">Semester</option>
+            	<option value="forceAtlas">ForceAtlas</option>
+            	<option value="random">Random</option>
+            </select>
+            <hr>
+            <input type="checkbox" id="relative-nodes-checkbox">
+            <label for="relative-nodes-checkbox">Relative nodes size</label>
+            <br>
+            <input type="checkbox" id="shpow-labels-checkbox">
+            <label for="shpow-labels-checkbox">Show labels</label>
+            <br>
+        </div>
+    </asside>
+    <div id="container"></div>
+    <!-- <div class="overlay">
+	<span class="menu-icon   overlay-close"></span>
 	<article class="content">
 		<h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
 		<p>This is a diploma project of <a class="link" href="https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile">Viktor Maksimenko</a>, ONPU student. <br>
 		This web app displays the graph of computer science subjects. Edges between graph nodes are dependencies between subjects. Fot graph drawing we use <a class="link" href="http://sigmajs.org/">Sigma.js</a> - a JavaScript library dedicated to graph drawing. <br>
 		For more details view our project on <a class="link" href="https://github.com/vikmaksimenko/diploma">github</a></p>
-	</article>
-</div>
-<script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="script/sigma.min.js"></script>
-<script type="text/javascript" src="script/plugins/sigma.layout.forceAtlas2.min.js"></script>
-<script type="text/javascript" src="script/plugins/sigma.plugins.dragNodes.min.js"></script>
-<script type="text/javascript" src="script/plugins/sigma.renderers.snapshot.js"></script>
-<script type="text/javascript" src="script/plugins/sigma.plugins.relativeSize.js"></script>
-<script type="text/javascript" src="data/data_for_sigma.js"></script>
-<script type="text/javascript" src="script/main.js"></script>
-
-
+	</article> -->
+    <!-- </div> -->
+    <!-- <div class="force-atlas-controls">
+	<h1>Force Atlas settings</h1>
+	<button type="button" id="start-force-atlas" class="btn btn-primary">Start</button>
+	<button type="button" id="stop-force-atlas"class="btn btn-danger">Stop</button>
+	<a><span class="glyphicon glyphicon-search"></span></a>
+</div> -->
+    <script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="script/sigma.min.js"></script>
+    <script type="text/javascript" src="script/bootstrap.min.js"></script>
+    <script type="text/javascript" src="script/plugins/sigma.layout.forceAtlas2.min.js"></script>
+    <script type="text/javascript" src="script/plugins/sigma.plugins.dragNodes.min.js"></script>
+    <script type="text/javascript" src="script/plugins/sigma.renderers.snapshot.min.js"></script>
+    <script type="text/javascript" src="script/plugins/sigma.plugins.relativeSize.js"></script>
+    <script type="text/javascript" src="script/plugins/sigma.custom.plugins.highlightNeighbors.js"></script>
+    <script type="text/javascript" src="script/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="data/data_for_sigma.js"></script>
+    <script type="text/javascript" src="script/main.js"></script>
 </body>
+
 </html>
