@@ -30,6 +30,11 @@ function initMenu() {
         $(".settings").toggleClass("settings-hidden");
     }); 
 
+    $("#more-info-button").click(function() {
+        $(".settings").addClass("settings-hidden");
+        $(".overlay").addClass("shown");
+    });
+
     document.getElementById('toggle-menu').addEventListener('click', function() {
         var checkBox = document.getElementById('toggle-menu');
         var aside = document.getElementById('settings');
@@ -42,13 +47,7 @@ function initMenu() {
         }
     }, false);
 
-    document.getElementById('info_button').addEventListener('click', function() {
-        var checkBox = document.getElementById('toggle-menu');
-        checkBox.click();
-        var overlay = document.getElementById('overlay');
-        overlay.style.top = 0;
-        overlay.style.opacity = 1;
-    }, false);
+    
 
     document.getElementById('overlay-close').addEventListener('click', function() {
         var overlay = document.getElementById('overlay');

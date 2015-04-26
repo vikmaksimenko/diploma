@@ -143,23 +143,8 @@ a.button {
 }
 /*button end*/
 
-/*#toggle-menu {
-    display: none;
-}
-
-#toggle-menu:checked ~ label[for="toggle-menu"] .menu-icon {
-  transform: rotate(180deg);
-}
-#toggle-menu:checked ~ label[for="toggle-menu"] .menu-icon:before {
-  display: none;
-}
-#toggle-menu:checked ~ label[for="toggle-menu"] .menu-icon:after {
-  display: block;
-}
-
-
-
-#overlay {  
+/*overlay*/
+.overlay {  
   color: #ddd;
   position: absolute;
   opacity: 0;
@@ -174,25 +159,22 @@ a.button {
   transition: all 0.5s;
 }
 
-#overlay-close {
+.overlay.shown {
+  top: 0;
+  opacity: 1;
+}
+
+/*#overlay-close-button {
   max-height: 30px;
   position: absolute;
   display: block;
   float: right;
   right: 20px;
   top: 20px;
-}
+  color: #fff;
+}*/
 
-#overlay-close:before {
-  content: '╳';
-  display: block;
-  font-weight: 800;
-}
-
-#overlay-close:hover {
-  transform: scale(0.9);
-}
-
+/*
 #overlay .logo {
   text-align: center;
 }
@@ -220,7 +202,7 @@ a.button {
   background-color: rgba(255,255,255,0.7);
   color: #333;
 }
-
+*//*end overlay */
 
 
 .force-atlas-controls {
