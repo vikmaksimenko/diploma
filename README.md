@@ -10,3 +10,6 @@ data folder contains input data for graph library
 input folder contains input unparsed ONPU documents 
 script and style folders contain .js and .css files
 
+# Settings
+Settings were temporary removed. I have to deside what settings should be enabled. 
+

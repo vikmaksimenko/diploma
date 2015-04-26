@@ -1,4 +1,4 @@
-var s; // sigma example 
+var s; // sigma instane 
 
 $(document).ajaxError(function(a, b, c, d) {
     console.log("error" + d);
@@ -10,10 +10,26 @@ $(document).ready(function() {
     //     init(json);
     // });
     initGraph(data);
-    // initMenu();
+    // initForceAtlasControls();
+    initMenu();
 });
 
+function initForceAtlasControls () {
+    document.getElementById('stop-force-atlas').addEventListener('click', function() {
+        s.stopForceAtlas2();
+    }, false);
+
+    document.getElementById('start-force-atlas').addEventListener('click', function() {
+        s.startForceAtlas2();
+    }, false);
+}
+
 function initMenu() {
+    $("#settings-button").click(function(){
+        $("#settings-button-icon").toggleClass("clicked");
+        $(".settings").toggleClass("settings-hidden");
+    }); 
+
     document.getElementById('toggle-menu').addEventListener('click', function() {
         var checkBox = document.getElementById('toggle-menu');
         var aside = document.getElementById('settings');
@@ -39,6 +55,8 @@ function initMenu() {
         overlay.style.top = '-100vh';
         overlay.style.opacity = 0;
     }, false);
+
+
 }
 
 function initGraph(json) {
@@ -52,11 +70,7 @@ function initGraph(json) {
     // sortNodesToCircle(nodes);
     // sortNodesToLines(nodes);
 
-    s.startForceAtlas2();
-    console.log("forceAtlas begin");
-    setTimeout(function() {
-        s.stopForceAtlas2();
-    }, 3 * 1000);
+    // s.startForceAtlas2();s
 
     console.log(json);
 
@@ -82,16 +96,16 @@ function setGraphConfigs(json) {
     // todo add this to separate method
 
     sigma.renderers.def = sigma.renderers.canvas;
-    sigma.classes.graph.addMethod('neighbors', function(nodeId) {
-        var k,
-            neighbors = {},
-            index = this.allNeighborsIndex[nodeId] || {};
+    // sigma.classes.graph.addMethod('neighbors', function(nodeId) {
+    //     var k,
+    //         neighbors = {},
+    //         index = this.allNeighborsIndex[nodeId] || {};
 
-        for (k in index)
-            neighbors[k] = this.nodesIndex[k];
+    //     for (k in index)
+    //         neighbors[k] = this.nodesIndex[k];
 
-        return neighbors;
-    });
+    //     return neighbors;
+    // });
 
 
 
