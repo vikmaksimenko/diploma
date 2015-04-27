@@ -13,14 +13,17 @@
 </head>
 
 <body>
+    <!-- open setings button -->
     <div id="settings-button">
-        <span id="settings-button-icon" class="glyphicon glyphicon-plus"></span>
+        <span id="settings-button-icon" class="glyphicon glyphicon-plus close-button"></span>
     </div>
+    <!-- end open settings button -->
+    <!-- settings -->
     <asside class="settings settings-hidden">
         <h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
         <div class="settings-buttons-group">
-            <a href="#" id="snapshot-button" class="button">Save</a>
-            <a href="#" id="more-info-button" class="button">More info...</a>
+            <a href="#save-graph-modal" id="snapshot-button" class="button" data-toggle="modal" data-target="#save-graph-modal">Save</a>
+            <a href="#about" id="more-info-button" class="button">More info...</a>
         </div>
         <div class="settings-group mCustomScrollbar" data-mcs-theme="dark">
             <h3>Settings: </h3>
@@ -28,46 +31,82 @@
             <input type="range" id="scale-range" min="0" max="100" step="1" value="50">
             <br>
             <hr>
-			<label for="layout-select">Layout</label>
+            <label for="layout-select">Layout</label>
             <select class="form-control" id="layout-select">
-            	<option value="circle">Circle</option>
-            	<option value="semecter">Semester</option>
-            	<option value="forceAtlas">ForceAtlas</option>
-            	<option value="random">Random</option>
+                <option value="circle">Circle</option>
+                <option value="semecter">Semester</option>
+                <option value="forceAtlas">ForceAtlas</option>
+                <option value="random" selected="selected">Random</option>
             </select>
             <hr>
             <input type="checkbox" id="relative-nodes-checkbox">
             <label for="relative-nodes-checkbox">Relative nodes size</label>
             <br>
-            <input type="checkbox" id="shpow-labels-checkbox">
-            <label for="shpow-labels-checkbox">Show labels</label>
+            <input type="checkbox" id="show-labels-checkbox">
+            <label for="show-labels-checkbox">Show labels</label>
             <br>
         </div>
     </asside>
+    <!-- end settngs -->
+    <!-- sigma cotainer -->
     <div id="container"></div>
-    <!-- <div class="overlay">
-	<span class="menu-icon   overlay-close"></span>
-	<article class="content">
-		<h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
-		<p>This is a diploma project of <a class="link" href="https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile">Viktor Maksimenko</a>, ONPU student. <br>
-		This web app displays the graph of computer science subjects. Edges between graph nodes are dependencies between subjects. Fot graph drawing we use <a class="link" href="http://sigmajs.org/">Sigma.js</a> - a JavaScript library dedicated to graph drawing. <br>
-		For more details view our project on <a class="link" href="https://github.com/vikmaksimenko/diploma">github</a></p>
-	</article> -->
-    <!-- </div> -->
-    <!-- <div class="force-atlas-controls">
-	<h1>Force Atlas settings</h1>
-	<button type="button" id="start-force-atlas" class="btn btn-primary">Start</button>
-	<button type="button" id="stop-force-atlas"class="btn btn-danger">Stop</button>
-	<a><span class="glyphicon glyphicon-search"></span></a>
-</div> -->
+    <!-- end sigma container -->
+    <!-- info overlay -->
+    <div class="overlay" id="about">
+        <span class="glyphicon glyphicon-remove close-button" id="overlay-close-button"></span>
+        <article class="content">
+            <h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
+            <p>This is a diploma project of <a class="link" href="https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile">Viktor Maksimenko</a>, ONPU student.
+                <br> This web app displays the graph of computer science subjects. Edges between graph nodes are dependencies between subjects. Fot graph drawing we use <a class="link" href="http://sigmajs.org/">Sigma.js</a> - a JavaScript library dedicated to graph drawing.
+                <br> For more details view our project on <a class="link" href="https://github.com/vikmaksimenko/diploma">github</a></p>
+        </article>
+    </div>
+    <!-- end info overlay -->
+    <!-- save graph to image diaog -->
+    <div class="modal fade" id="save-graph-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Save Graph</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="snapshot-format">Format</label>
+                    <select class="form-control" id="snapshot-format">
+                        <option value="svg">SVG</option>
+                        <option value="jpg">JPG</option>
+                        <option value="png" selected="selected">PNG</option>
+                        <option value="gif">GIF</option>
+                        <option value="tiff">TIFF</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <a class="button" href="#" id="download-snapshot">Download</a>
+                    <a class="button" href="#" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end save graph to image diaog -->
+	<!-- force atlas controls 
+    <div class="force-atlas-controls">
+        <h1>Force Atlas settings</h1>
+        <a href="#" id ><span class="glyphicon glyphicon-search"></span></a>
+        <a href="#" id="start-force-atlas" class="button">Start</button>
+        <a href="#" id="stop-force-atlas" class="button">Stop</button>
+    </div>
+    end force atlas controls --> 
     <script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="script/sigma.min.js"></script>
     <script type="text/javascript" src="script/bootstrap.min.js"></script>
     <script type="text/javascript" src="script/plugins/sigma.layout.forceAtlas2.min.js"></script>
     <script type="text/javascript" src="script/plugins/sigma.plugins.dragNodes.min.js"></script>
     <script type="text/javascript" src="script/plugins/sigma.renderers.snapshot.min.js"></script>
+    <script type="text/javascript" src="script/plugins/sigma.exporters.svg.min.js"></script>
     <script type="text/javascript" src="script/plugins/sigma.plugins.relativeSize.js"></script>
     <script type="text/javascript" src="script/plugins/sigma.custom.plugins.highlightNeighbors.js"></script>
+    <script type="text/javascript" src="script/plugins/sigma.custom.plugins.sortNodesToCircle.js"></script>
+    <script type="text/javascript" src="script/plugins/sigma.custom.plugins.sortNodesToLines.js"></script>
     <script type="text/javascript" src="script/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="data/data_for_sigma.js"></script>
     <script type="text/javascript" src="script/main.js"></script>

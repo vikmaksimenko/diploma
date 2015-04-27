@@ -14,9 +14,10 @@
      * This function will highlight neighbours of node
      *
      * @param  {sigma}   s            The related sigma instance.
-     * @param  {object}  initialSize  Start size property
      */
-    sigma.plugins.sortNodesToLines(nodes) {
+    sigma.plugins.sortNodesToLines(s) {
+        var nodes = s.graph.nodes();
+
         var mem = nodes.reduce(function(memo, item) {
             if (!memo[item.level]) memo[item.level] = [];
             memo[item.level].push(item);

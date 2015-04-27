@@ -1,4 +1,4 @@
-var s; // sigma instane 
+var sigmaInstance; // sigma instane 
 
 $(document).ajaxError(function(a, b, c, d) {
     console.log("error" + d);
@@ -10,53 +10,53 @@ $(document).ready(function() {
     //     init(json);
     // });
     initGraph(data);
-    // initForceAtlasControls();
     initMenu();
 });
 
-function initForceAtlasControls () {
-    document.getElementById('stop-force-atlas').addEventListener('click', function() {
-        s.stopForceAtlas2();
-    }, false);
-
-    document.getElementById('start-force-atlas').addEventListener('click', function() {
-        s.startForceAtlas2();
-    }, false);
-}
-
 function initMenu() {
-    $("#settings-button").click(function(){
+    $("#settings-button").click(function() {
         $("#settings-button-icon").toggleClass("clicked");
         $(".settings").toggleClass("settings-hidden");
-    }); 
+    });
 
-    document.getElementById('toggle-menu').addEventListener('click', function() {
-        var checkBox = document.getElementById('toggle-menu');
-        var aside = document.getElementById('settings');
-        if (!checkBox.checked) {
-            aside.style.left = '0';
-            console.log('Visible');
+    $("#more-info-button").click(function() {
+        $(".settings").addClass("settings-hidden");
+        $(".overlay").addClass("shown");
+    });
+
+    $("#overlay-close-button").click(function() {
+        $(".overlay").removeClass("shown");
+    });
+
+    $("#download-snapshot").click(function() {
+        var select = $("#snapshot-format").get(0);
+        var selectedFormat = select.options[select.selectedIndex].value;
+        if(selectedFormat == "svg") {
+            sigmaInstance.toSVG({download: true});
         } else {
-            aside.style.left = '-350px';
-            console.log('InVisible');
+            sigmaInstance.renderers[0].snapshot({
+                download: true, 
+                format: selectedFormat
+            });
         }
-    }, false);
+    });
 
-    document.getElementById('info_button').addEventListener('click', function() {
-        var checkBox = document.getElementById('toggle-menu');
-        checkBox.click();
-        var overlay = document.getElementById('overlay');
-        overlay.style.top = 0;
-        overlay.style.opacity = 1;
-    }, false);
+    $("#stop-force-atlas").click(function() {
+        sigmaInstance.stopForceAtlas2();
+    });
+    
+    $("#start-force-atlas").click(function() {
+        sigmaInstance.startForceAtlas2();
+    });
 
-    document.getElementById('overlay-close').addEventListener('click', function() {
-        var overlay = document.getElementById('overlay');
-        overlay.style.top = '-100vh';
-        overlay.style.opacity = 0;
-    }, false);
-
-
+    $("#relative-nodes-checkbox").click(function() {
+        var checkBox = document.getElementById('relative-nodes-checkbox');
+        if (checkBox.checked) {
+            sigma.plugins.relativeSize(sigmaInstance, 10);
+        } else {
+            sigma.plugins.absoluteSize(sigmaInstance, 1);
+        }
+    });
 }
 
 function initGraph(json) {
@@ -72,23 +72,7 @@ function initGraph(json) {
 
     // s.startForceAtlas2();s
 
-    console.log(json);
 
-    // document.getElementById('snapshot-button').addEventListener('click', function() {
-    //     s.renderers[0].snapshot({
-    //         download: true,
-    //         labels: true
-    //     });
-    // }, false);
-
-    // document.getElementById('relative-nodes-checkbox').addEventListener('click', function() {
-    //     var checkBox = document.getElementById('relative-nodes-checkbox');
-    //     if (checkBox.checked) {
-    //         sigma.plugins.relativeSize(s, 1);
-    //     } else {
-    //         sigma.plugins.absoluteSize(s, 1);
-    //     }
-    // }, false);
 }
 
 function setGraphConfigs(json) {
@@ -109,7 +93,7 @@ function setGraphConfigs(json) {
 
 
 
-    s = new sigma({
+    sigmaInstance = new sigma({
         container: document.getElementById('container'),
         graph: json,
         settings: {
@@ -126,7 +110,7 @@ function setGraphConfigs(json) {
     });
 
     // sigma.plugins.highlightNeighbors(s);
-    var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
+    var dragListener = sigma.plugins.dragNodes(sigmaInstance, sigmaInstance.renderers[0]);
 }
 
 function preformatData(json) {
