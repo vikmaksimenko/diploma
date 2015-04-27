@@ -21,6 +21,7 @@ function initMenu() {
 
     $("#more-info-button").click(function() {
         $(".settings").addClass("settings-hidden");
+        $("#settings-button-icon").removeClass("clicked");
         $(".overlay").addClass("shown");
     });
 
