@@ -11,12 +11,13 @@
         _cache = {};
 
     /**
-     * This function will highlight neighbours of node
+     * This function draw graph in form of a circle
      *
      * @param  {sigma}   s            The related sigma instance.
-     * @param  {object}  initialSize  Start size property
      */
-    sigma.plugins.sortNodesToCircle(nodes) {
+    sigma.plugins.sortNodesToCircle(s) {
+        var nodes = s.graph.nodes();
+
         for (var i = 0; i < nodes.length; i++) {
             nodes[i].x = 50 * Math.cos(2 * i * Math.PI / nodes.length);
             nodes[i].y = 50 * Math.sin(2 * i * Math.PI / nodes.length);

@@ -10,19 +10,8 @@ $(document).ready(function() {
     //     init(json);
     // });
     initGraph(data);
-    // initForceAtlasControls();
     initMenu();
 });
-
-function initForceAtlasControls() {
-    document.getElementById('stop-force-atlas').addEventListener('click', function() {
-        sigmaInstance.stopForceAtlas2();
-    }, false);
-
-    document.getElementById('start-force-atlas').addEventListener('click', function() {
-        sigmaInstance.startForceAtlas2();
-    }, false);
-}
 
 function initMenu() {
     $("#settings-button").click(function() {
@@ -40,10 +29,7 @@ function initMenu() {
     });
 
     $("#download-snapshot").click(function() {
-        console.log("onclick");
         var select = $("#snapshot-format").get(0);
-        console.log(select.options);
-        console.log(select.selectedIndex);
         var selectedFormat = select.options[select.selectedIndex].value;
         if(selectedFormat == "svg") {
             sigmaInstance.toSVG({download: true});
@@ -52,6 +38,23 @@ function initMenu() {
                 download: true, 
                 format: selectedFormat
             });
+        }
+    });
+
+    $("#stop-force-atlas").click(function() {
+        sigmaInstance.stopForceAtlas2();
+    });
+    
+    $("#start-force-atlas").click(function() {
+        sigmaInstance.startForceAtlas2();
+    });
+
+    $("#relative-nodes-checkbox").click(function() {
+        var checkBox = document.getElementById('relative-nodes-checkbox');
+        if (checkBox.checked) {
+            sigma.plugins.relativeSize(sigmaInstance, 10);
+        } else {
+            sigma.plugins.absoluteSize(sigmaInstance, 1);
         }
     });
 }
@@ -69,23 +72,7 @@ function initGraph(json) {
 
     // s.startForceAtlas2();s
 
-    console.log(json);
 
-    // document.getElementById('snapshot-button').addEventListener('click', function() {
-    //     s.renderers[0].snapshot({
-    //         download: true,
-    //         labels: true
-    //     });
-    // }, false);
-
-    // document.getElementById('relative-nodes-checkbox').addEventListener('click', function() {
-    //     var checkBox = document.getElementById('relative-nodes-checkbox');
-    //     if (checkBox.checked) {
-    //         sigma.plugins.relativeSize(s, 1);
-    //     } else {
-    //         sigma.plugins.absoluteSize(s, 1);
-    //     }
-    // }, false);
 }
 
 function setGraphConfigs(json) {
