@@ -166,7 +166,6 @@ a.button {
 }
 
 #overlay-close-button.close-button {
-  max-height: 30px;
   position: absolute;
   display: block;
   float: right;
