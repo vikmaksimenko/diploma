@@ -41,6 +41,16 @@ function initMenu() {
         }
     });
 
+    // $("#layout-select").change(function() {
+    //     var select = $("#layout-select").get(0);
+    //     var selectedLayout = select.options[select.selectedIndex].value;
+    //     switch(selectedLayout) {
+    //         case "circle":
+    //         sigmaInstance.sortNodesToCircle();
+    //         break;
+    //     }
+    // }); 
+
     $("#stop-force-atlas").click(function() {
         sigmaInstance.stopForceAtlas2();
     });
