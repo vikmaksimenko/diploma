@@ -1,8 +1,7 @@
 # About
 This is a diploma project of Viktor Maksimenko, ONPU student.
 This web app displays the graph of computer science subjects. Edges between graph nodes are dependencies between subjects.
-Fot graph drawing we use vis.js Copyright (C) 2010-2015 Almende B.V. 
-You may view it on  http://visjs.org/
+Fot graph drawing we use Sigma.js - a JavaScript library dedicated to graph drawing. You may view it on http://sigmajs.org/
 
 # Structure
 For running app open index.html, 
