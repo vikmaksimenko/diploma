@@ -15,13 +15,13 @@
      *
      * @param  {sigma}   s            The related sigma instance.
      */
-    sigma.plugins.sortNodesToCircle(s) {
+    sigma.plugins.putNodesRandom = function(s) {
         var nodes = s.graph.nodes();
 
         for (var i = 0; i < nodes.length; i++) {
-            nodes[i].x = 50 * Math.cos(2 * i * Math.PI / nodes.length);
-            nodes[i].y = 50 * Math.sin(2 * i * Math.PI / nodes.length);
-            nodes[i].size = 2;
+            nodes[i].random_x = Math.random() * 100;
+            nodes[i].random_y = Math.random() * 100;
+            // nodes[i].size = 1;
         }
     }
 }).call(window);

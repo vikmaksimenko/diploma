@@ -15,7 +15,7 @@
      *
      * @param  {sigma}   s            The related sigma instance.
      */
-    sigma.plugins.sortNodesToLines(s) {
+    sigma.plugins.putNodesToLines = function(s) {
         var nodes = s.graph.nodes();
 
         var mem = nodes.reduce(function(memo, item) {
@@ -31,9 +31,9 @@
         for (var i in mem) {
             var stepX = MAX_WIDTH / mem[i].length;
             for (var j = 0; j < mem[i].length; j++) {
-                mem[i][j].x = stepX * j;
-                mem[i][j].y = stepY * i;
-                mem[i][j].size = 2;
+                mem[i][j].lines_x = stepX * j;
+                mem[i][j].lines_y = stepY * i;
+                // mem[i][j].size = 2;
             }
         }
     }

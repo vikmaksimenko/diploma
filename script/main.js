@@ -5,6 +5,9 @@ $(document).ajaxError(function(a, b, c, d) {
 });
 
 $(document).ready(function() {
+    // DO NOT REMOVE!!!1
+    // geting graph data from JSON
+    //
     // $.getJSON('/data/data_for_sigma.json', function(json) {
     //     console.log(json);
     //     init(json);
@@ -32,30 +35,24 @@ function initMenu() {
     $("#download-snapshot").click(function() {
         var select = $("#snapshot-format").get(0);
         var selectedFormat = select.options[select.selectedIndex].value;
-        if(selectedFormat == "svg") {
-            sigmaInstance.toSVG({download: true});
+        if (selectedFormat == "svg") {
+            sigmaInstance.toSVG({
+                download: true
+            });
         } else {
             sigmaInstance.renderers[0].snapshot({
-                download: true, 
+                download: true,
                 format: selectedFormat
             });
         }
     });
 
-    // $("#layout-select").change(function() {
-    //     var select = $("#layout-select").get(0);
-    //     var selectedLayout = select.options[select.selectedIndex].value;
-    //     switch(selectedLayout) {
-    //         case "circle":
-    //         sigmaInstance.sortNodesToCircle();
-    //         break;
-    //     }
-    // }); 
+    $("#layout-select").change(changeGraphLayout);
 
     $("#stop-force-atlas").click(function() {
         sigmaInstance.stopForceAtlas2();
     });
-    
+
     $("#start-force-atlas").click(function() {
         sigmaInstance.startForceAtlas2();
     });
@@ -73,17 +70,8 @@ function initMenu() {
 function initGraph(json) {
     var nodes = json.nodes;
     preformatData(json);
-
-    console.log(json);
-
     setGraphConfigs(json);
-
-    // sortNodesToCircle(nodes);
-    // sortNodesToLines(nodes);
-
-    // s.startForceAtlas2();s
-
-
+    changeGraphLayout();
 }
 
 function setGraphConfigs(json) {
@@ -130,11 +118,45 @@ function preformatData(json) {
         edges[i].id = i + "";
     }
     var nodes = json.nodes;
-    console.log(json);
     for (var i = 0; i < nodes.length; i++) {
-        nodes[i].x = Math.random() * 100;
-        nodes[i].y = Math.random() * 100;
+        nodes[i].x = 1;
+        nodes[i].y = 1;
         nodes[i].size = 1;
     }
-    console.log(json);
+}
+
+function animate(s, prefix) {
+    sigma.plugins.animate(
+        s, {
+            x: prefix + '_x',
+            y: prefix + '_y'
+        }, {
+            nodes: sigmaInstance.graph.nodes(),
+            easing: 'cubicInOut',
+            duration: 1000
+        }
+    );
+}
+
+function changeGraphLayout() {
+    var select = $("#layout-select").get(0);
+    var selectedLayout = select.options[select.selectedIndex].value;
+    if(sigmaInstance.isForceAtlas2Running()) { sigmaInstance.stopForceAtlas2(); }
+    switch (selectedLayout) {
+        case "circle":
+            sigma.plugins.putNodesToCircle(sigmaInstance);
+            animate(sigmaInstance, "circle");
+            break;
+        case "semester":
+            sigma.plugins.putNodesToLines(sigmaInstance);
+            animate(sigmaInstance, "lines");
+            break;
+        case "random":
+            sigma.plugins.putNodesRandom(sigmaInstance);
+            animate(sigmaInstance, "random");
+            break;
+        case "forceAtlas":
+            sigmaInstance.startForceAtlas2();
+            break;
+    }
 }
