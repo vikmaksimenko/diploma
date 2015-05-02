@@ -47,6 +47,21 @@ function initMenu() {
         }
     });
 
+    $("#rotate-range").change(function() {
+        var val = $("#rotate-range").get(0).value;
+        var radians = val * (Math.PI/180);
+        var position = moveCamera.position || {x: 0, y:0, ratio: 0.9, angle: 0};
+        position.angle = radians;
+        moveCamera(position);        
+    });
+
+    $("#scale-range").change(function() {
+        var val = $("#scale-range").get(0).value;
+        var position = moveCamera.position || {x: 0, y:0, ratio: 0.9, angle: 0};
+        position.ratio = 1 / parseFloat(val);
+        moveCamera(position);        
+    });
+
     $("#layout-select").change(changeGraphLayout);
 
     $("#stop-force-atlas").click(function() {
@@ -102,7 +117,7 @@ function setGraphConfigs(json) {
             borderSize: 2,
             sideMargin: 10,
             zoomMin: 0.1,
-            zoomMax: 1,
+            zoomMax: 5,
             zoomingRatio: 1.5,
             doubleClickZoomingRatio: 2
         }
@@ -159,4 +174,11 @@ function changeGraphLayout() {
             sigmaInstance.startForceAtlas2();
             break;
     }
+}
+
+function moveCamera(position) {
+    this.position = position;
+        // there is a property for this in Sigma lib, but as far as I can judje it's not implemented yet
+    sigmaInstance.camera.isAnimated = true;
+    sigmaInstance.camera.goTo(this.position);
 }

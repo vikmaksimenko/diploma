@@ -28,7 +28,9 @@
         <div class="settings-group mCustomScrollbar" data-mcs-theme="dark">
             <h3>Settings: </h3>
             <label for="scale-range">Scale</label>
-            <input type="range" id="scale-range" min="0" max="100" step="1" value="50">
+            <input type="range" id="scale-range" min="0.2" max="10" step="0.5" value="1">
+            <label for="rotate-range">Rotate</label>
+            <input type="range" id="rotate-range" min="0" max="360" step="1" value="0">
             <br>
             <hr>
             <label for="layout-select">Layout</label>
@@ -56,6 +58,7 @@
         <a href="#" class="close-button" id="overlay-close-button"><span class="glyphicon glyphicon-remove" ></span></a>
         <article class="content">
             <h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
+            <!-- <h4 class="discipline-name">Discipline name</h4> -->
             <p>This is a diploma project of <a class="link" href="https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile">Viktor Maksimenko</a>, ONPU student.
                 <br> This web app displays the graph of computer science subjects. Edges between graph nodes are dependencies between subjects. Fot graph drawing we use <a class="link" href="http://sigmajs.org/">Sigma.js</a> - a JavaScript library dedicated to graph drawing.
                 <br> For more details view our project on <a class="link" href="https://github.com/vikmaksimenko/diploma">github</a></p>
