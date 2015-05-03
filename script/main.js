@@ -49,17 +49,27 @@ function initMenu() {
 
     $("#rotate-range").change(function() {
         var val = $("#rotate-range").get(0).value;
-        var radians = val * (Math.PI/180);
-        var position = moveCamera.position || {x: 0, y:0, ratio: 0.9, angle: 0};
+        var radians = val * (Math.PI / 180);
+        var position = moveCamera.position || {
+            x: 0,
+            y: 0,
+            ratio: 0.9,
+            angle: 0
+        };
         position.angle = radians;
-        moveCamera(position);        
+        moveCamera(position);
     });
 
     $("#scale-range").change(function() {
         var val = $("#scale-range").get(0).value;
-        var position = moveCamera.position || {x: 0, y:0, ratio: 0.9, angle: 0};
+        var position = moveCamera.position || {
+            x: 0,
+            y: 0,
+            ratio: 0.9,
+            angle: 0
+        };
         position.ratio = 1 / parseFloat(val);
-        moveCamera(position);        
+        moveCamera(position);
     });
 
     $("#layout-select").change(changeGraphLayout);
@@ -177,7 +187,9 @@ function animate(s, prefix) {
 function changeGraphLayout() {
     var select = $("#layout-select").get(0);
     var selectedLayout = select.options[select.selectedIndex].value;
-    if(sigmaInstance.isForceAtlas2Running()) { sigmaInstance.stopForceAtlas2(); }
+    if (sigmaInstance.isForceAtlas2Running()) {
+        sigmaInstance.stopForceAtlas2();
+    }
     switch (selectedLayout) {
         case "circle":
             sigma.plugins.putNodesToCircle(sigmaInstance);
@@ -199,7 +211,7 @@ function changeGraphLayout() {
 
 function moveCamera(position) {
     this.position = position;
-        // there is a property for this in Sigma lib, but as far as I can judge it's not implemented yet
+    // there is a property for this in Sigma lib, but as far as I can judge it's not implemented yet
     sigmaInstance.camera.isAnimated = true;
     sigmaInstance.camera.goTo(this.position);
 }
@@ -214,28 +226,35 @@ function generateOverlay(nodeId, sigInst) {
 
     var discipline;
     sigInst.graph.nodes().some(function(curVal) {
-        if(curVal["id"] == nodeId) {
+        if (curVal["id"] == nodeId) {
             return discipline = curVal;
         }
     });
 
+    var neighboars = sigInst.graph.neighborhood(discipline["id"]);
+    var basics = neighboars.edges.filter(function(element) {
+        return element.target == discipline["id"];
+    });
+
+    var disciplines = basics.reduce(function(memo, item) {
+        for (var i = 1; i < neighboars.nodes.length; i++) {
+            des = neighboars.nodes[i];
+            if (des["id"] == item.source) {
+                memo += (des["label"] + " (" + item["label"] + "), ");
+                break;
+            }
+        }
+        return memo;
+    }, "");
+    disciplines = disciplines.substring(0, disciplines.length - 2) + ".";
+    console.log(disciplines);
+
     $('body').append(overlay
-        .append(closeButton.click(function() {$(".overlay").removeClass("shown"); }))
+        .append(closeButton.click(function() {
+            $(".overlay").removeClass("shown");
+        }))
         .append(content
             .append(disciplineName.append(discipline["label"]))
-            .append(disciplineBasics)
-            .append(disciplineThemes)));    // todo parse edges for nodes
-                                            // and add hiperlinks to discipline overlay
-
-    console.log(discipline["id"]);
-    var neighboars = sigInst.graph.neighborhood(discipline["id"]);
-    console.log(neighboars.nodes);
-    console.log(neighboars.edges);
-
-    var basics = new Array();
-    for(var i in neighboars.edges) {
-        if(i.target == discipline["id"]) {
-
-        }
-    }
+            .append(disciplineBasics.append(disciplines))
+            .append(disciplineThemes.append("Eugene, please, add this info to JSON")))); // ask Eugene to make this field in JSON 
 }
