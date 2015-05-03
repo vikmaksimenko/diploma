@@ -135,7 +135,7 @@ function setGraphConfigs(json) {
 
     sigmaInstance.bind('doubleClickNode', function(e) {
         console.log(e.type, e.data.node.id, e.data.captor);
-        generateOverlay(e.data.node.id, json);
+        generateOverlay(e.data.node.id, sigmaInstance);
     });
 
     //sigmaInstance.bind('doubleClickEdge', function(e) {
@@ -204,7 +204,7 @@ function moveCamera(position) {
     sigmaInstance.camera.goTo(this.position);
 }
 
-function generateOverlay(nodeId, data) {
+function generateOverlay(nodeId, sigInst) {
     var overlay = $('<div class="overlay shown"></div>');
     var closeButton = $('<a href="#" class="close-button" id="overlay-close-button"><span class="glyphicon glyphicon-remove" ></span></a>');
     var content = $('<article class="content"></article>');
@@ -213,7 +213,7 @@ function generateOverlay(nodeId, data) {
     var disciplineThemes = $('<p class"themes">Disciline themes: </p>');
 
     var discipline;
-    data["nodes"].some(function(curVal) {
+    sigInst.graph.nodes().some(function(curVal) {
         if(curVal["id"] == nodeId) {
             return discipline = curVal;
         }
@@ -224,6 +224,18 @@ function generateOverlay(nodeId, data) {
         .append(content
             .append(disciplineName.append(discipline["label"]))
             .append(disciplineBasics)
-            .append(disciplineThemes)));   // todo parse edges for node
-                                                // and add hiperlinks to discipline overlay
+            .append(disciplineThemes)));    // todo parse edges for nodes
+                                            // and add hiperlinks to discipline overlay
+
+    console.log(discipline["id"]);
+    var neighboars = sigInst.graph.neighborhood(discipline["id"]);
+    console.log(neighboars.nodes);
+    console.log(neighboars.edges);
+
+    var basics = new Array();
+    for(var i in neighboars.edges) {
+        if(i.target == discipline["id"]) {
+
+        }
+    }
 }
