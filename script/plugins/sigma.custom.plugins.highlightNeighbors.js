@@ -24,8 +24,6 @@
             e.originalColor = e.color;
         });
 
-        
-
         s.bind('clickNode', function(e) {
             var nodeId = e.data.node.id,
                 toKeep = s.graph.neighbors(nodeId);
