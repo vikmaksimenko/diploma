@@ -90,6 +90,22 @@ function initMenu() {
             sigma.plugins.absoluteSize(sigmaInstance, 1);
         }
     });
+
+
+    $("#curve-edges-checkbox").click(function() {
+        var checkBox = document.getElementById('curve-edges-checkbox');
+        var edges = sigmaInstance.graph.edges();
+        if(checkBox.checked) {
+            for (var i = 0; i < edges.length; i++) {
+                edges[i].type = 'curvedArrow';
+            }
+        } else {
+            for (var i = 0; i < edges.length; i++) {
+                edges[i].type = '';
+            }
+        }
+        sigmaInstance.refresh();
+    });
 }
 
 function initGraph(json) {
@@ -161,7 +177,6 @@ function preformatData(json) {
     var edges = json.edges;
     for (var i = 0; i < edges.length; i++) {
         edges[i].id = i + "";
-        //edges[i].type = 'curve';
     }
     var nodes = json.nodes;
     for (var i = 0; i < nodes.length; i++) {
