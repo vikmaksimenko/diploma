@@ -262,7 +262,7 @@ function generateOverlay(nodeId, sigInst) {
         }
         return memo;
     }, "");
-    disciplines = disciplines.substring(0, disciplines.length - 2) + ".";
+    disciplines = disciplines.substring(0, disciplines.length - 2);
     console.log(disciplines);
 
     $('body').append(overlay
@@ -271,8 +271,11 @@ function generateOverlay(nodeId, sigInst) {
         }))
         .append(content
             .append(disciplineName.append(discipline["label"]))
-            .append(disciplineBasics.append(disciplines))
-            .append(disciplineThemes.append("Eugene, please, add this info to JSON")))); // ask Eugene to make this field in JSON 
+            .append(disciplineThemes.append("Eugene, please, add this info to JSON")))); // ask Eugene to make this field in JSON
+
+    if(disciplines != "") {
+        content.append(disciplineBasics.append(disciplines + "."))
+    }
 }
 
 function getNodeById(nodeId) {
