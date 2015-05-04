@@ -216,6 +216,12 @@ function moveCamera(position) {
     sigmaInstance.camera.goTo(this.position);
 }
 
+function onDisciplineClicked(element) {
+    var nodeId = element.getAttribute("data-node-id");
+    $(".overlay").removeClass("shown");
+    setTimeout('generateOverlay("' + nodeId + '", sigmaInstance)', 400);
+}
+
 function generateOverlay(nodeId, sigInst) {
     var overlay = $('<div class="overlay shown"></div>');
     var closeButton = $('<a href="#" class="close-button" id="overlay-close-button"><span class="glyphicon glyphicon-remove" ></span></a>');
@@ -224,13 +230,7 @@ function generateOverlay(nodeId, sigInst) {
     var disciplineBasics = $('<p class"basics">Basic themes: </p>');
     var disciplineThemes = $('<p class"themes">Disciline themes: </p>');
 
-    var discipline;
-    sigInst.graph.nodes().some(function(curVal) {
-        if (curVal["id"] == nodeId) {
-            return discipline = curVal;
-        }
-    });
-
+    var discipline = getNodeById(nodeId);
     var neighboars = sigInst.graph.neighborhood(discipline["id"]);
     var basics = neighboars.edges.filter(function(element) {
         return element.target == discipline["id"];
@@ -240,7 +240,8 @@ function generateOverlay(nodeId, sigInst) {
         for (var i = 1; i < neighboars.nodes.length; i++) {
             des = neighboars.nodes[i];
             if (des["id"] == item.source) {
-                memo += (des["label"] + " (" + item["label"] + "), ");
+                var a = "<a href='#' class='link' onclick='onDisciplineClicked(this)' data-node-id='" + des["id"] + "'>" + des["label"] + "</a>";
+                memo += a + " (" + item["label"] + "), ";
                 break;
             }
         }
@@ -257,4 +258,14 @@ function generateOverlay(nodeId, sigInst) {
             .append(disciplineName.append(discipline["label"]))
             .append(disciplineBasics.append(disciplines))
             .append(disciplineThemes.append("Eugene, please, add this info to JSON")))); // ask Eugene to make this field in JSON 
+}
+
+function getNodeById(nodeId) {
+    var discipline;
+    sigmaInstance.graph.nodes().some(function(curVal) {
+        if (curVal["id"] == nodeId) {
+            return discipline = curVal;
+        }
+    });
+    return discipline;
 }
