@@ -17,6 +17,8 @@ $(document).ready(function() {
 });
 
 function initMenu() {
+    $('[data-toggle="tooltip"]').tooltip();
+
     $("#settings-button").click(function() {
         $("#settings-button-icon").toggleClass("clicked");
         $(".settings").toggleClass("settings-hidden");
