@@ -136,7 +136,7 @@ function setGraphConfigs(json) {
         graph: json,
         settings: {
             labelThreshold: 10,
-            doubleClickEnabled: false,
+            doubleClickEnabled: true,
             defaultEdgeType: "arrow",
             minArrowSize: 7,
             borderSize: 2,
@@ -263,8 +263,6 @@ function generateOverlay(nodeId, sigInst) {
         return memo;
     }, "");
     disciplines = disciplines.substring(0, disciplines.length - 2);
-    console.log(disciplines);
-
     $('body').append(overlay
         .append(closeButton.click(function() {
             $(".overlay").removeClass("shown");
