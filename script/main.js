@@ -17,6 +17,8 @@ $(document).ready(function() {
 });
 
 function initMenu() {
+    $('[data-toggle="tooltip"]').tooltip();
+
     $("#settings-button").click(function() {
         $("#settings-button-icon").toggleClass("clicked");
         $(".settings").toggleClass("settings-hidden");
@@ -136,7 +138,7 @@ function setGraphConfigs(json) {
         graph: json,
         settings: {
             labelThreshold: 10,
-            doubleClickEnabled: false,
+            doubleClickEnabled: true,
             defaultEdgeType: "arrow",
             minArrowSize: 7,
             borderSize: 2,
@@ -205,6 +207,13 @@ function changeGraphLayout() {
     if (sigmaInstance.isForceAtlas2Running()) {
         sigmaInstance.stopForceAtlas2();
     }
+
+    if(selectedLayout == "forceAtlas") {
+        $(".force-atlas-controls").removeClass("no-display");
+    } else {
+        $(".force-atlas-controls").addClass("no-display");
+    }
+
     switch (selectedLayout) {
         case "circle":
             sigma.plugins.putNodesToCircle(sigmaInstance);
@@ -220,6 +229,7 @@ function changeGraphLayout() {
             break;
         case "forceAtlas":
             sigmaInstance.startForceAtlas2();
+            $(".force-atlas-controls").removeClass("no-display");
             break;
     }
 }
@@ -262,17 +272,18 @@ function generateOverlay(nodeId, sigInst) {
         }
         return memo;
     }, "");
-    disciplines = disciplines.substring(0, disciplines.length - 2) + ".";
-    console.log(disciplines);
-
+    disciplines = disciplines.substring(0, disciplines.length - 2);
     $('body').append(overlay
         .append(closeButton.click(function() {
             $(".overlay").removeClass("shown");
         }))
         .append(content
             .append(disciplineName.append(discipline["label"]))
-            .append(disciplineBasics.append(disciplines))
-            .append(disciplineThemes.append("Eugene, please, add this info to JSON")))); // ask Eugene to make this field in JSON 
+            .append(disciplineThemes.append("Eugene, please, add this info to JSON")))); // ask Eugene to make this field in JSON
+
+    if(disciplines != "") {
+        content.append(disciplineBasics.append(disciplines + "."))
+    }
 }
 
 function getNodeById(nodeId) {

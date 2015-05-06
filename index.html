@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="style/fontello.css">
     <link rel="stylesheet" href="style/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="style/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="style/bootstrap-theme.min.css"> -->
+    <link rel="stylesheet" href="style/bootstrap-theme.min.css">
     <link rel="stylesheet" href="style/style.css">
     <link href='http://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -22,13 +22,13 @@
     <h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
     <div class="settings-buttons-group">
         <a href="#save-graph-modal" id="snapshot-button" class="button" data-toggle="modal" data-target="#save-graph-modal">Save</a>
-        <a href="#about" id="more-info-button" class="button">More info...</a>
+        <a href="#about" id="more-info-button" class="button">About</a>
     </div>
     <div class="settings-group mCustomScrollbar" data-mcs-theme="dark">
         <h3>Settings: </h3>
-        <label for="scale-range">Scale</label>
+        <label for="scale-range">Scale <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" title="Scale graph from x0.2 to x5 "></span></label>
         <input type="range" id="scale-range" min="0.2" max="10" step="0.5" value="1">
-        <label for="rotate-range">Rotate</label>
+        <label for="rotate-range">Rotate <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" title="Rotate graph from 0 to 360 degrees"></span></label>
         <input type="range" id="rotate-range" min="0" max="360" step="1" value="0">
         <br>
         <hr>
@@ -39,15 +39,28 @@
             <option value="forceAtlas">ForceAtlas</option>
             <option value="random">Random</option>
         </select>
+        <div class="no-display force-atlas-controls">
+            <h5>Force Atlas Controls <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" title="Use force-directed graph drawing algorithm for graph displaying"></span></h5>
+            <a href="#" id="start-force-atlas" class="button">Start</a>
+            <a href="#" id="stop-force-atlas" class="button">Stop</a>
+            <!-- end save graph to image diaog -->
+<!-- force atlas controls
+<div class="force-atlas-controls">
+    <h1>Force Atlas settings</h1>
+    <a href="#" id ><span class="glyphicon glyphicon-search"></span></a>
+    
+</div>
+end force atlas controls -->
+        </div>
         <hr>
         <input type="checkbox" id="relative-nodes-checkbox">
-        <label for="relative-nodes-checkbox">Relative nodes size</label>
+        <label for="relative-nodes-checkbox">Relative nodes size <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" title="Resizes nodes according to edges number"></span></label>
         <br>
         <input type="checkbox" id="show-labels-checkbox">
-        <label for="show-labels-checkbox">Show labels</label>
+        <label for="show-labels-checkbox">Show labels <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" title="Hover nodes or scale graph to see nodes labels"></span></label>
         <br>
         <input type="checkbox" id="curve-edges-checkbox">
-        <label for="curve-edges-checkbox">Curve edges</label>
+        <label for="curve-edges-checkbox">Curve edges </label>
         <br>
     </div>
 </asside>
@@ -62,7 +75,11 @@
         <h1 class="logo"><a href="#" class="button">Graph<span class="logo-edu">.edu</span></a></h1>
         <!-- <h4 class="discipline-name">Discipline name</h4> -->
         <p>This is a diploma project of <a class="link" href="https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile">Viktor Maksimenko</a>, ONPU student.
-            <br> This web app displays the graph of computer science subjects. Edges between graph nodes are dependencies between subjects. Fot graph drawing we use <a class="link" href="http://sigmajs.org/">Sigma.js</a> - a JavaScript library dedicated to graph drawing.
+            <br> This web app displays the graph of computer science subjects. Edges between graph nodes are dependencies between subjects. For more info about graph double click it!
+            <br> The graph is scalable and rotateble. Use range elements to rotate it from 0 to 360 degres and scale from 0.2 to 10 size. You can also scale grapf with mouse scroll.
+            <br> You may also use choose one of layouts or drag nodes to positions you prefer. 
+            <br> Use config flags for creating the best view and save it as SVG, JPG, PNG, GIF or TIFF.
+            <br>For graph drawing we use <a class="link" href="http://sigmajs.org/">Sigma.js</a> - a JavaScript library dedicated to graph drawing.
             <br> For more details view our project on <a class="link" href="https://github.com/vikmaksimenko/diploma">github</a></p>
     </article>
 </div>
@@ -92,15 +109,6 @@
         </div>
     </div>
 </div>
-<!-- end save graph to image diaog -->
-<!-- force atlas controls
-<div class="force-atlas-controls">
-    <h1>Force Atlas settings</h1>
-    <a href="#" id ><span class="glyphicon glyphicon-search"></span></a>
-    <a href="#" id="start-force-atlas" class="button">Start</button>
-    <a href="#" id="stop-force-atlas" class="button">Stop</button>
-</div>
-end force atlas controls -->
 <script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="script/sigma.min.js"></script>
 <script type="text/javascript" src="script/plugins/sigma.layout.forceAtlas2.min.js"></script>

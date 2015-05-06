@@ -196,7 +196,7 @@ a.button {
   width: 50vw;
   height: 100%;
   margin: auto;
-  font-size: 4vmin;
+  font-size: 3.5vmin;
   text-align: justify;
 }
 
@@ -228,13 +228,11 @@ a.button {
 /*end overlay */
 
 .force-atlas-controls {
-  position: fixed;
-  bottom: 0;
-  padding: 30px;
-  background-color: red;
-  width: 100%;
-  text-align: center;
-  z-index: 100;
+  display: block;
+}
+
+.force-atlas-controls.no-display {
+  display: none;
 }
 
 #save-graph-modal .modal-dialog{
