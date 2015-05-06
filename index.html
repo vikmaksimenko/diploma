@@ -39,6 +39,19 @@
             <option value="forceAtlas">ForceAtlas</option>
             <option value="random">Random</option>
         </select>
+        <div class="no-display force-atlas-controls">
+            <h5>Force Atlas Controls <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" title="Use force-directed graph drawing algorithm for graph displaying"></span></h5>
+            <a href="#" id="start-force-atlas" class="button">Start</a>
+            <a href="#" id="stop-force-atlas" class="button">Stop</a>
+            <!-- end save graph to image diaog -->
+<!-- force atlas controls
+<div class="force-atlas-controls">
+    <h1>Force Atlas settings</h1>
+    <a href="#" id ><span class="glyphicon glyphicon-search"></span></a>
+    
+</div>
+end force atlas controls -->
+        </div>
         <hr>
         <input type="checkbox" id="relative-nodes-checkbox">
         <label for="relative-nodes-checkbox">Relative nodes size <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" title="Resizes nodes according to edges number"></span></label>
@@ -96,15 +109,6 @@
         </div>
     </div>
 </div>
-<!-- end save graph to image diaog -->
-<!-- force atlas controls
-<div class="force-atlas-controls">
-    <h1>Force Atlas settings</h1>
-    <a href="#" id ><span class="glyphicon glyphicon-search"></span></a>
-    <a href="#" id="start-force-atlas" class="button">Start</button>
-    <a href="#" id="stop-force-atlas" class="button">Stop</button>
-</div>
-end force atlas controls -->
 <script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="script/sigma.min.js"></script>
 <script type="text/javascript" src="script/plugins/sigma.layout.forceAtlas2.min.js"></script>

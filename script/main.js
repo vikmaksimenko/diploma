@@ -207,6 +207,13 @@ function changeGraphLayout() {
     if (sigmaInstance.isForceAtlas2Running()) {
         sigmaInstance.stopForceAtlas2();
     }
+
+    if(selectedLayout == "forceAtlas") {
+        $(".force-atlas-controls").removeClass("no-display");
+    } else {
+        $(".force-atlas-controls").addClass("no-display");
+    }
+
     switch (selectedLayout) {
         case "circle":
             sigma.plugins.putNodesToCircle(sigmaInstance);
@@ -222,6 +229,7 @@ function changeGraphLayout() {
             break;
         case "forceAtlas":
             sigmaInstance.startForceAtlas2();
+            $(".force-atlas-controls").removeClass("no-display");
             break;
     }
 }
