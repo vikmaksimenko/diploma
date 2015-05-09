@@ -1,4 +1,5 @@
 var sigmaInstance; // sigma instane 
+var ANIMATION_DURATION = 400;
 
 $(document).ajaxError(function(a, b, c, d) {
     console.log("error" + d);
@@ -53,23 +54,25 @@ function initMenu() {
         var val = $("#rotate-range").get(0).value;
         var radians = val * (Math.PI / 180);
         var camera = sigmaInstance.camera;
-        moveCamera({
+        var position = {
             x: camera.x,
             y: camera.y,
             ratio: camera.ratio,
             angle: radians
-        });
+        };
+        sigma.misc.animation.camera(camera, position, {duration: ANIMATION_DURATION});
     });
 
     $("#scale-range").change(function() {
         var val = $("#scale-range").get(0).value;
         var camera = sigmaInstance.camera;
-        moveCamera({
+        var position = {
             x: camera.x,
             y: camera.y,
             ratio: 1 / parseFloat(val),
             angle: camera.angle
-        });
+        };
+        sigma.misc.animation.camera(camera, position, {duration: ANIMATION_DURATION});
     });
 
     $("#layout-select").change(changeGraphLayout);
@@ -247,19 +250,7 @@ function changeGraphLayout() {
 }
 
 function moveCamera(position) {
-    this.position = position;
-    // there is a property for this in Sigma lib, but as far as I can judge it's not implemented yet
-    sigmaInstance.camera.isAnimated = true;
-    sigmaInstance.camera.isMoving = true;
-    console.log(sigmaInstance);
-    console.log(sigma.misc);
-    sigma.misc.animation.camera(sigmaInstance.camera, this.position, {duration: 400, onComplete: function() {console.log("on complete")}});
-        // 400//, 
-        // {},
-        // function() {console.log("on finish"); }
-        // {}
-    // });
-    // sigmaInstance.camera.goTo(this.position);
+     sigma.misc.animation.camera(sigmaInstance.camera, position, {duration: ANIMATION_DURATION});
 }
 
 function onDisciplineClicked(element) {
