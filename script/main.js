@@ -27,11 +27,11 @@ function initMenu() {
     $("#more-info-button").click(function() {
         $(".settings").addClass("settings-hidden");
         $("#settings-button-icon").removeClass("clicked");
-        $(".overlay").addClass("shown");
+        $("#about").addClass("shown");
     });
 
     $("#overlay-close-button").click(function() {
-        $(".overlay").removeClass("shown");
+        $("#about").removeClass("shown");
     });
 
     $("#download-snapshot").click(function() {
@@ -52,26 +52,24 @@ function initMenu() {
     $("#rotate-range").change(function() {
         var val = $("#rotate-range").get(0).value;
         var radians = val * (Math.PI / 180);
-        var position = moveCamera.position || {
-            x: 0,
-            y: 0,
-            ratio: 0.9,
-            angle: 0
-        };
-        position.angle = radians;
-        moveCamera(position);
+        var camera = sigmaInstance.camera;
+        moveCamera({
+            x: camera.x,
+            y: camera.y,
+            ratio: camera.ratio,
+            angle: radians
+        });
     });
 
     $("#scale-range").change(function() {
         var val = $("#scale-range").get(0).value;
-        var position = moveCamera.position || {
-            x: 0,
-            y: 0,
-            ratio: 0.9,
-            angle: 0
-        };
-        position.ratio = 1 / parseFloat(val);
-        moveCamera(position);
+        var camera = sigmaInstance.camera;
+        moveCamera({
+            x: camera.x,
+            y: camera.y,
+            ratio: 1 / parseFloat(val),
+            angle: camera.angle
+        });
     });
 
     $("#layout-select").change(changeGraphLayout);
@@ -138,7 +136,7 @@ function setGraphConfigs(json) {
         graph: json,
         settings: {
             labelThreshold: 10,
-            doubleClickEnabled: true,
+            doubleClickEnabled: false,
             defaultEdgeType: "arrow",
             minArrowSize: 7,
             borderSize: 2,
@@ -163,7 +161,17 @@ function setGraphConfigs(json) {
 
     sigmaInstance.bind('doubleClickNode', function(e) {
         console.log(e.type, e.data.node.id, e.data.captor);
-        generateOverlay(e.data.node.id, sigmaInstance);
+        var node = e.data.node;
+        console.log(node);
+        moveCamera({
+            x: node.read_cam[0].x,
+            y: node.read_cam[0].y,
+            ratio: 0.5,
+            angle: 0
+        });   
+        console.log(node);
+        console.log(sigmaInstance.camera);
+        // generateOverlay(e.data.node.id, sigmaInstance);
     });
 
     //sigmaInstance.bind('doubleClickEdge', function(e) {
@@ -199,6 +207,10 @@ function animate(s, prefix) {
             duration: 1000
         }
     );
+    for(var node in sigmaInstance.graph.nodes()) {
+        node.x = node[prefix + "_x"];
+        node.y = node[prefix + "_y"];
+    }
 }
 
 function changeGraphLayout() {
@@ -238,13 +250,25 @@ function moveCamera(position) {
     this.position = position;
     // there is a property for this in Sigma lib, but as far as I can judge it's not implemented yet
     sigmaInstance.camera.isAnimated = true;
-    sigmaInstance.camera.goTo(this.position);
+    sigmaInstance.camera.isMoving = true;
+    console.log(sigmaInstance);
+    console.log(sigma.misc);
+    sigma.misc.animation.camera(sigmaInstance.camera, this.position, {duration: 400, onComplete: function() {console.log("on complete")}});
+        // 400//, 
+        // {},
+        // function() {console.log("on finish"); }
+        // {}
+    // });
+    // sigmaInstance.camera.goTo(this.position);
 }
 
 function onDisciplineClicked(element) {
     var nodeId = element.getAttribute("data-node-id");
     $(".overlay").removeClass("shown");
-    setTimeout('generateOverlay("' + nodeId + '", sigmaInstance)', 400);
+    
+    // setTimeout('generateOverlay("' + nodeId + '", sigmaInstance)', 400);
+
+    // generateOverlay(nodeId, sigmaInstance);
 }
 
 function generateOverlay(nodeId, sigInst) {
