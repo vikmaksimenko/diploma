@@ -1,5 +1,5 @@
 var sigmaInstance; // sigma instane 
-var ANIMATION_DURATION = 400;
+var ANIMATIONS_TIME = 400;
 
 $(document).ajaxError(function(a, b, c, d) {
     console.log("error" + d);
@@ -60,7 +60,9 @@ function initMenu() {
             ratio: camera.ratio,
             angle: radians
         };
-        sigma.misc.animation.camera(camera, position, {duration: ANIMATION_DURATION});
+        sigma.misc.animation.camera(camera, position, {
+            duration: sigmaInstance.settings['animationsTime'] || ANIMATIONS_TIME
+        });
     });
 
     $("#scale-range").change(function() {
@@ -72,7 +74,9 @@ function initMenu() {
             ratio: 1 / parseFloat(val),
             angle: camera.angle
         };
-        sigma.misc.animation.camera(camera, position, {duration: ANIMATION_DURATION});
+        sigma.misc.animation.camera(camera, position, {
+            duration: sigmaInstance.settings['animationsTime'] || ANIMATIONS_TIME
+        });
     });
 
     $("#layout-select").change(changeGraphLayout);
@@ -98,7 +102,7 @@ function initMenu() {
     $("#curve-edges-checkbox").click(function() {
         var checkBox = document.getElementById('curve-edges-checkbox');
         var edges = sigmaInstance.graph.edges();
-        if(checkBox.checked) {
+        if (checkBox.checked) {
             for (var i = 0; i < edges.length; i++) {
                 edges[i].type = 'curvedArrow';
             }
@@ -142,8 +146,9 @@ function setGraphConfigs(json) {
             doubleClickEnabled: false,
             defaultEdgeType: "arrow",
             minArrowSize: 7,
-            borderSize: 2,
-            sideMargin: 10,
+            animationsTime: ANIMATIONS_TIME,
+            // borderSize: 2,
+            // sideMargin: 10,
             zoomMin: 0.1,
             zoomMax: 5,
             zoomingRatio: 1.5
@@ -163,18 +168,9 @@ function setGraphConfigs(json) {
     sigma.plugins.dragNodes(sigmaInstance, sigmaInstance.renderers[0]);
 
     sigmaInstance.bind('doubleClickNode', function(e) {
-        console.log(e.type, e.data.node.id, e.data.captor);
         var node = e.data.node;
-        console.log(node);
-        moveCamera({
-            x: node.read_cam[0].x,
-            y: node.read_cam[0].y,
-            ratio: 0.5,
-            angle: 0
-        });   
-        console.log(node);
-        console.log(sigmaInstance.camera);
-        // generateOverlay(e.data.node.id, sigmaInstance);
+        moveCameraToNode(node, sigmaInstance);
+        generateOverlay(node.id, sigmaInstance);
     });
 
     //sigmaInstance.bind('doubleClickEdge', function(e) {
@@ -210,7 +206,7 @@ function animate(s, prefix) {
             duration: 1000
         }
     );
-    for(var node in sigmaInstance.graph.nodes()) {
+    for (var node in sigmaInstance.graph.nodes()) {
         node.x = node[prefix + "_x"];
         node.y = node[prefix + "_y"];
     }
@@ -223,7 +219,7 @@ function changeGraphLayout() {
         sigmaInstance.stopForceAtlas2();
     }
 
-    if(selectedLayout == "forceAtlas") {
+    if (selectedLayout == "forceAtlas") {
         $(".force-atlas-controls").removeClass("no-display");
     } else {
         $(".force-atlas-controls").addClass("no-display");
@@ -249,21 +245,19 @@ function changeGraphLayout() {
     }
 }
 
-function moveCamera(position) {
-     sigma.misc.animation.camera(sigmaInstance.camera, position, {duration: ANIMATION_DURATION});
-}
-
 function onDisciplineClicked(element) {
     var nodeId = element.getAttribute("data-node-id");
     $(".overlay").removeClass("shown");
-    
-    // setTimeout('generateOverlay("' + nodeId + '", sigmaInstance)', 400);
-
-    // generateOverlay(nodeId, sigmaInstance);
+    moveCameraToNode(getNodeById(nodeId), sigmaInstance);
+    generateOverlay(nodeId, sigmaInstance);
 }
 
 function generateOverlay(nodeId, sigInst) {
-    var overlay = $('<div class="overlay shown"></div>');
+    if (document.getElementById(nodeId)) {
+        return;
+    }
+
+    var overlay = $('<div class="overlay" id="' + nodeId + '"></div>');
     var closeButton = $('<a href="#" class="close-button" id="overlay-close-button"><span class="glyphicon glyphicon-remove" ></span></a>');
     var content = $('<article class="content"></article>');
     var disciplineName = $('<h4 class="discipline-name"></h4>');
@@ -296,9 +290,27 @@ function generateOverlay(nodeId, sigInst) {
             .append(disciplineName.append(discipline["label"]))
             .append(disciplineThemes.append("Eugene, please, add this info to JSON")))); // ask Eugene to make this field in JSON
 
-    if(disciplines != "") {
+    if (disciplines != "") {
         content.append(disciplineBasics.append(disciplines + "."))
     }
+
+    // kostyl', epta =) 
+    setTimeout(function() {
+        document.getElementById(nodeId).className += " shown";
+    }, 0);
+}
+
+function moveCameraToNode(node, sigmaInstance) {
+    var camera = sigmaInstance.camera;
+    var position = {
+        x: node[camera.readPrefix + 'x'],
+        y: node[camera.readPrefix + 'y'],
+        ratio: 0.1,
+        angle: camera.angle
+    };
+    sigma.misc.animation.camera(camera, position, {
+        duration: sigmaInstance.settings['animationsTime'] || ANIMATIONS_TIME
+    });
 }
 
 function getNodeById(nodeId) {
