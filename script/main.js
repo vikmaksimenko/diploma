@@ -98,6 +98,10 @@ function initMenu() {
         }
     });
 
+    // $("#show-labels-checkbox").click(function() {
+    //     sigmaInstance.settings.labelThreshold = 1;
+    //     sigmaInstance.refresh();
+    // });    
 
     $("#curve-edges-checkbox").click(function() {
         var checkBox = document.getElementById('curve-edges-checkbox');
@@ -123,21 +127,8 @@ function initGraph(json) {
 }
 
 function setGraphConfigs(json) {
-
-    // todo add this to separate method
-
+    changeSigma();
     sigma.renderers.def = sigma.renderers.canvas;
-    // sigma.classes.graph.addMethod('neighbors', function(nodeId) {
-    //     var k,
-    //         neighbors = {},
-    //         index = this.allNeighborsIndex[nodeId] || {};
-
-    //     for (k in index)
-    //         neighbors[k] = this.nodesIndex[k];
-
-    //     return neighbors;
-    // });
-
     sigmaInstance = new sigma({
         container: document.getElementById('container'),
         graph: json,
@@ -147,8 +138,7 @@ function setGraphConfigs(json) {
             defaultEdgeType: "arrow",
             minArrowSize: 7,
             animationsTime: ANIMATIONS_TIME,
-            // borderSize: 2,
-            // sideMargin: 10,
+            sideMargin: 10,
             zoomMin: 0.1,
             zoomMax: 5,
             zoomingRatio: 1.5
@@ -164,8 +154,8 @@ function setGraphConfigs(json) {
         }
     });
 
-    // sigma.plugins.highlightNeighbors(s);
     sigma.plugins.dragNodes(sigmaInstance, sigmaInstance.renderers[0]);
+    sigma.plugins.highlightNeighbors(sigmaInstance);
 
     sigmaInstance.bind('doubleClickNode', function(e) {
         var node = e.data.node;
@@ -321,4 +311,18 @@ function getNodeById(nodeId) {
         }
     });
     return discipline;
+}
+
+function changeSigma() {
+    sigma.classes.graph.addMethod('neighbors', function(nodeId) {
+        var k,
+            neighbors = {},
+            index = this.allNeighborsIndex[nodeId] || {};
+
+        for (k in index)
+            neighbors[k] = this.nodesIndex[k];
+
+        return neighbors;
+    });
+
 }

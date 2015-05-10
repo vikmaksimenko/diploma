@@ -24,11 +24,12 @@
             e.originalColor = e.color;
         });
 
+        console.log(s.graph);
+
         s.bind('clickNode', function(e) {
             var nodeId = e.data.node.id,
                 toKeep = s.graph.neighbors(nodeId);
             toKeep[nodeId] = e.data.node;
-
             s.graph.nodes().forEach(function(n) {
                 if (toKeep[n.id]) {
                     n.color = n.originalColor;
@@ -37,7 +38,6 @@
                 }
                 // n.size = n.size + 20;
             });
-
             s.graph.edges().forEach(function(e) {
                 if (toKeep[e.source] && toKeep[e.target]) {
                     e.color = e.originalColor;
@@ -45,7 +45,6 @@
                     e.color = '#888';
                 }
             });
-
             s.refresh();
 
         });
@@ -54,11 +53,9 @@
             s.graph.nodes().forEach(function(n) {
                 n.color = n.originalColor;
             });
-
             s.graph.edges().forEach(function(e) {
                 e.color = e.originalColor;
             });
-
             s.refresh();
         });
     }
