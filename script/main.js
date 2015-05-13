@@ -1,5 +1,5 @@
 var sigmaInstance; // sigma instane 
-var ANIMATIONS_TIME = 400;
+var ANIMATIONS_TIME = 1000;
 
 $(document).ajaxError(function(a, b, c, d) {
     console.log("error" + d);
@@ -34,6 +34,8 @@ function initMenu() {
     $("#overlay-close-button").click(function() {
         $("#about").removeClass("shown");
     });
+
+    $("#default-button").click(doDefaultSettings);
 
     $("#download-snapshot").click(function() {
         var select = $("#snapshot-format").get(0);
@@ -141,7 +143,10 @@ function setGraphConfigs(json) {
             sideMargin: 10,
             zoomMin: 0.1,
             zoomMax: 5,
-            zoomingRatio: 1.5
+            zoomingRatio: 1.5,
+
+            nableEdgeHovering: true,
+            edgeHoverSizeRatio: 2,
 
             // edge hovering settings. Maybe they'll help someday
             //doubleClickZoomingRatio: 2,
@@ -154,13 +159,19 @@ function setGraphConfigs(json) {
         }
     });
 
-    sigma.plugins.dragNodes(sigmaInstance, sigmaInstance.renderers[0]);
+    var dragNodesListener = sigma.plugins.dragNodes(sigmaInstance, sigmaInstance.renderers[0]);
     sigma.plugins.highlightNeighbors(sigmaInstance);
 
     sigmaInstance.bind('doubleClickNode', function(e) {
         var node = e.data.node;
         moveCameraToNode(node, sigmaInstance);
         generateOverlay(node.id, sigmaInstance);
+    });
+
+    sigmaInstance.bind('coordinatesUpdated', function() {
+        // $("#scale-range").val(coordinates.ratio);
+        // $("#rotate-range").val(coordinates.angle);  
+        console.log("hello");
     });
 
     //sigmaInstance.bind('doubleClickEdge', function(e) {
@@ -325,4 +336,26 @@ function changeSigma() {
         return neighbors;
     });
 
+    // var sigmaCameraGoTo = sigma.misc.animation.camera;
+    // sigma.misc.animation.camera = function(camera, val, options) {
+    //     sigmaCameraGoTo(camera, val, options);
+    //     var ratio = Math.round(camera.ratio * 100) / 100;
+    //     $("#scale-range").val(1 / ratio);
+    //     console.log(camera.ratio);
+    // }
+}
+
+function doDefaultSettings() {
+    $("#layout-select").val("circle").trigger("change");
+
+    sigma.misc.animation.camera(camera, position, {
+        duration: sigmaInstance.settings['animationsTime'] || ANIMATIONS_TIME
+    });      
+    var camera = sigmaInstance.camera;
+    var position = {
+        x: 0,
+        y: 0,
+        ratio: 1,
+        angle: 0
+    };
 }

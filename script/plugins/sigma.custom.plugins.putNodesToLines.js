@@ -24,8 +24,8 @@
             return memo;
         }, []);
 
-        var MAX_WIDTH = 50;
-        var MAX_HEIGHT = 50;
+        var MAX_WIDTH = 100;
+        var MAX_HEIGHT = 100;
 
         var stepY = MAX_HEIGHT / Object.keys(mem).length;
         for (var i in mem) {
