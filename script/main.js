@@ -255,13 +255,14 @@ function onDisciplineClicked(element) {
 
 function generateOverlay(nodeId, sigInst) {
     if (document.getElementById(nodeId)) {
+        document.getElementById(nodeId).className += " shown";
         return;
     }
 
     var overlay = $('<div class="overlay" id="' + nodeId + '"></div>');
     var closeButton = $('<a href="#" class="close-button" id="overlay-close-button"><span class="glyphicon glyphicon-remove" ></span></a>');
-    var content = $('<article class="content"></article>');
-    var disciplineName = $('<h4 class="discipline-name"></h4>');
+    var content = $('<article class="content mCustomScrollbar"></article>');
+    var disciplineName = $('<h4 class="discipline-name logo"></h4>');
     var disciplineBasics = $('<p class"basics">Basic themes: </p>');
     var disciplineThemes = $('<p class"themes">Disciline themes: </p>');
 
@@ -287,8 +288,8 @@ function generateOverlay(nodeId, sigInst) {
         .append(closeButton.click(function() {
             $(".overlay").removeClass("shown");
         }))
+        .append(disciplineName.append(discipline["label"]))
         .append(content
-            .append(disciplineName.append(discipline["label"]))
             .append(disciplineThemes.append("Eugene, please, add this info to JSON")))); // ask Eugene to make this field in JSON
 
     if (disciplines != "") {
